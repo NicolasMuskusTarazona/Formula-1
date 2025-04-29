@@ -1,33 +1,27 @@
 @import url(variables.css);
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 a {
     text-decoration: none;
     color: var(--color-blanco);
 }
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 header {
-    background-color: white;
+    background-color: var(--color-blanco);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 40px;
     flex-wrap: wrap;
 }
-
 header img {
     height: 30px;
 }
-
 .header-container {
     display: flex;
     align-items: center;
@@ -35,7 +29,6 @@ header img {
     flex-wrap: wrap;
     justify-content: center;
 }
-
 .nav-links {
     display: flex;
     gap: 16px;
@@ -90,7 +83,6 @@ header img {
 .dashboard {
     display: flex;
     flex-direction: column;
-    height: 100vh;
 }
 
 .menu {
@@ -118,6 +110,77 @@ header img {
 .menu button.active {
     border-color: var(--color-rojo);
     color: var(--color-rojo);
+}
+
+input {
+    color: var(--color-negro);
+    font-family: 'Poppins-Bold', sans-serif;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: 2px solid var(--color-rojo);
+    border-radius: 10px;
+    outline: none;
+    margin-left: 20px;
+}
+/* Estilos cartas */
+
+.circuitos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.circuito {
+    border: 2px solid var(--color-plateado);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.circuito:hover {
+    transform: translateY(-10px);
+}
+
+.nombre {
+    font-size: 2em;
+    color: var(--color-negro); 
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+.pais{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.imagen-circuito {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info, .descripcion, .record {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 8px 0;
+}
+
+.info strong, .descripcion strong, .record strong {
+    color: var(--color-rojo);
+}
+
+.descripcion {
+    font-style: italic;
+    margin-top: 10px;
+}
+hr {
+    border: 1px solid var(--color-plateado);
+    margin: 15px 0;
 }
 
 @media (max-width: 768px) {
