@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/userweb.css">
-    <script src="./js/main.js" defer type="module"></script>
+    <script src="../js/userweb.js" defer type="module"></script>
     <link rel="icon" type="image/png" href="../storage/img/userweb/F1-logo-1.png">
 </head>
 <body>
@@ -25,12 +25,29 @@
           </div>
     </header>
     <section id="dashboard" class="dashboard">
-        <nav class="menu">
-          <button data-section="drivers"><a href="./userweb.html">Pilotos</a></button>
-          <button data-section="vehicles"><a href="./vehicles.html">Vehículos</a></button>
-          <button data-section="tracks"><a href="./circuits.html">Circuitos</a></button>
-          <button data-section="race"><a href="./simulation.html">Simulación</a></button>
-        </nav>
+      <nav class="menu">
+        <img src="../storage/img/userweb/logo-blanco.webp" />
+    
+        <button data-tooltip="drivers">
+          <a href="./userweb.html">Pilotos</a>
+          <div class="mini-page"></div>
+        </button>
+    
+        <button data-tooltip="vehicles">
+          <a href="./vehicles.html">Vehículos</a>
+          <div class="mini-page"></div>
+        </button>
+    
+        <button data-tooltip="tracks">
+          <a href="./circuits.html">Circuitos</a>
+          <div class="mini-page"></div>
+        </button>
+    
+        <button data-tooltip="race">
+          <a href="./simulation.html">Simulación</a>
+          <div class="mini-page"></div>
+        </button>
+      </nav>
     </section>
 </body>
 </html>
