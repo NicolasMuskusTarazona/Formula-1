@@ -1,9 +1,10 @@
 // circuits.js
 import '../components/circuit-container.js';
+import '../components/circuit-search.js'
 
 const circuitos = [
     {
-        nombre: "Circuito de Mónaco",
+        nombre: "Circuito de Monaco",
         pais: "Mónaco",
         longitud_km: 3.34,
         vueltas: 78,
