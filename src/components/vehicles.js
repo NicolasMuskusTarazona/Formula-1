@@ -235,55 +235,66 @@ const vehiculos = [
   }
 ];
 
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('vehiculos');
   
+  if (!container) {
+    console.error('Contenedor #vehiculos no encontrado');
+    return;
+  }
   
-  document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('vehiculos');
-  
-    if (!container) {
-      console.error('Contenedor #vehiculos no encontrado');
-      return;
-    }
-  
-    vehiculos.forEach(v => {
-      const card = document.createElement('div');
-      card.className = 'card';
-  
-      const detallesID = `detalles-${v.modelo.replace(/\s+/g, '-')}`;
-  
-      card.innerHTML = `
-        <img src="${v.imagen}" alt="${v.modelo}">
-        <div class="card-content">
-          <h3>${v.modelo} - ${v.equipo}</h3>
-          <p><strong>Motor:</strong> ${v.motor}</p>
-          <p><strong>Velocidad Máx:</strong> ${v.velocidad_maxima_kmh} km/h</p>
-          <p><strong>0-100 km/h:</strong> ${v.aceleracion_0_100}s</p>
-          <button class="toggle-btn" data-id="${detallesID}">Ver Rendimiento</button>
-          <div class="details" id="${detallesID}" style="display: none;"></div>
-        </div>
-      `;
-        card.querySelector('.toggle-btn').addEventListener('click', (e) => {
-        const detallesDiv = card.querySelector(`#${detallesID}`);
-        const boton = e.target;
-  
-        if (detallesDiv.style.display === "none" || detallesDiv.style.display === "") {
-          if (detallesDiv.innerHTML.trim() === "") {
-            detallesDiv.innerHTML = Object.entries(v.rendimiento).map(([modo, datos]) => `
-              <h4>${modo.replace("_", " ").toUpperCase()}</h4>
-              <p>Velocidad promedio: ${datos.velocidad_promedio_kmh} km/h</p>
-              <p>Combustible (Seco): ${datos.consumo_combustible.seco} L/km</p>
-              <p>Neumáticos (Seco): ${datos.desgaste_neumaticos.seco}</p>
-            `).join('');
-          }
-          detallesDiv.style.display = "block";
-          boton.textContent = "Ocultar Rendimiento";
-        } else {
-          detallesDiv.style.display = "none";
-          boton.textContent = "Ver Rendimiento";
-        }
-      });
-  
-      container.appendChild(card);
+  // Función para filtrar vehículos por nombre
+  container.filterByName = (valor) => {
+    const cards = container.querySelectorAll('.card');
+    cards.forEach(card => {
+      const modelo = card.querySelector('h3').textContent.toLowerCase();
+      if (modelo.includes(valor.toLowerCase())) {
+        card.style.display = ''; // Mostrar tarjeta
+      } else {
+        card.style.display = 'none'; // Ocultar tarjeta
+      }
     });
-  });
+  };
+
+  vehiculos.forEach(v => {
+    const card = document.createElement('div');
+    card.className = 'card';
   
+    const detallesID = `detalles-${v.modelo.replace(/\s+/g, '-')}`;
+  
+    card.innerHTML = `
+      <img src="${v.imagen}" alt="${v.modelo}">
+      <div class="card-content">
+        <h3>${v.modelo} - ${v.equipo}</h3>
+        <p><strong>Motor:</strong> ${v.motor}</p>
+        <p><strong>Velocidad Máx:</strong> ${v.velocidad_maxima_kmh} km/h</p>
+        <p><strong>0-100 km/h:</strong> ${v.aceleracion_0_100}s</p>
+        <button class="toggle-btn" data-id="${detallesID}">Ver Rendimiento</button>
+        <div class="details" id="${detallesID}" style="display: none;"></div>
+      </div>
+    `;
+    
+    card.querySelector('.toggle-btn').addEventListener('click', (e) => {
+      const detallesDiv = card.querySelector(`#${detallesID}`);
+      const boton = e.target;
+  
+      if (detallesDiv.style.display === "none" || detallesDiv.style.display === "") {
+        if (detallesDiv.innerHTML.trim() === "") {
+          detallesDiv.innerHTML = Object.entries(v.rendimiento).map(([modo, datos]) => `
+            <h4>${modo.replace("_", " ").toUpperCase()}</h4>
+            <p>Velocidad promedio: ${datos.velocidad_promedio_kmh} km/h</p>
+            <p>Combustible (Seco): ${datos.consumo_combustible.seco} L/km</p>
+            <p>Neumáticos (Seco): ${datos.desgaste_neumaticos.seco}</p>
+          `).join('');
+        }
+        detallesDiv.style.display = "block";
+        boton.textContent = "Ocultar Rendimiento";
+      } else {
+        detallesDiv.style.display = "none";
+        boton.textContent = "Ver Rendimiento";
+      }
+    });
+  
+    container.appendChild(card);
+  });
+});
