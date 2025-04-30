@@ -25,7 +25,9 @@ const circuitos = [
             { temporada: 2022, piloto: 2 },
             { temporada: 2023, piloto: 1 }
         ],
-        imagen: "https://upload.wikimedia.org/wikipedia/commons/3/36/Monte_Carlo_Formula_1_track_map.svg"
+        imagen: "https://upload.wikimedia.org/wikipedia/commons/3/36/Monte_Carlo_Formula_1_track_map.svg",
+        desgaste_neumaticos: "Alto",
+        consumo_combustible: "Medio",
     },
     {
         nombre: "Silverstone",
@@ -39,7 +41,9 @@ const circuitos = [
             { temporada: 2022, piloto: 5 },
             { temporada: 2023, piloto: 1 }
         ],
-        imagen: "https://upload.wikimedia.org/wikipedia/commons/c/ca/Circuit_Silverstone_2011.svg"
+        imagen: "https://upload.wikimedia.org/wikipedia/commons/c/ca/Circuit_Silverstone_2011.svg",
+        desgaste_neumaticos: "Medio",
+        consumo_combustible: "Alto"
     },
     {
         nombre: "SpaFrancorchamps",
@@ -53,7 +57,9 @@ const circuitos = [
             { temporada: 2022, piloto: 1 },
             { temporada: 2023, piloto: 1 }
         ],
-        imagen: "https://upload.wikimedia.org/wikipedia/commons/5/54/Spa-Francorchamps_of_Belgium.svg"
+        imagen: "https://upload.wikimedia.org/wikipedia/commons/5/54/Spa-Francorchamps_of_Belgium.svg",
+        desgaste_neumaticos: "Alto",
+        consumo_combustible: "Alto"
     },
     {
         nombre: "Monza",
@@ -67,7 +73,9 @@ const circuitos = [
             { temporada: 2022, piloto: 1 },
             { temporada: 2023, piloto: 1 }
         ],
-        imagen: "https://upload.wikimedia.org/wikipedia/commons/f/f8/Monza_track_map.svg"
+        imagen: "https://upload.wikimedia.org/wikipedia/commons/f/f8/Monza_track_map.svg",
+        desgaste_neumaticos: "Bajo",
+        consumo_combustible: "Medio"
     },
     {
         nombre: "Interlagos",
@@ -81,7 +89,9 @@ const circuitos = [
             { temporada: 2022, piloto: 1 },
             { temporada: 2023, piloto: 1 }
         ],
-        imagen: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace_%28AKA_Interlagos%29_track_map.svg"
+        imagen: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace_%28AKA_Interlagos%29_track_map.svg",
+        desgaste_neumaticos: "Medio",
+        consumo_combustible: "Bajo"
     },
     {
         nombre: "YasMarina",
@@ -95,7 +105,9 @@ const circuitos = [
             { temporada: 2022, piloto: 1 },
             { temporada: 2023, piloto: 3 }
         ],
-        imagen: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Yas_Marina_Circuit.png"
+        imagen: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Yas_Marina_Circuit.png",
+        desgaste_neumaticos: "Alto",
+        consumo_combustible: "Medio"
     },
     {
         nombre: "Suzuka",
@@ -109,7 +121,9 @@ const circuitos = [
             { temporada: 2022, piloto: 1 },
             { temporada: 2023, piloto: 1 }
         ],
-        imagen: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Suzuka_circuit_map--2005.svg"
+        imagen: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Suzuka_circuit_map--2005.svg",
+        desgaste_neumaticos: "Bajo",
+        consumo_combustible: "Alto"
     }
 ];
 

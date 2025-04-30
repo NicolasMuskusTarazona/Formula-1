@@ -58,7 +58,9 @@ class CircuitContainer extends HTMLElement {
                 <p class="descripcion"><strong>Descripcion:</strong> ${circuito.descripcion}</p><hr>
                 <p class="info"><strong>Record:</strong> ${circuito.record_vuelta.tiempo} - ${circuito.record_vuelta.piloto} (${circuito.record_vuelta.año})</p><hr>
                 <p class="info"><strong>Ganadores:</strong> ${ganadoresHTML}</p><br>
-                <p class="info"><strong>Clima Promedio:</strong> ${this.climas[circuito.nombre]}</p>
+                <p class="info"><strong>Clima Promedio:</strong> ${this.climas[circuito.nombre]}</p><hr>
+                <p class="info"><strong>Desgaste Neumáticos:</strong> ${circuito.desgaste_neumaticos}</p>
+                <p class="info"><strong>Consumo Combustible:</strong> ${circuito.consumo_combustible}</p>
             `;
             circuitoElement.addEventListener('click', function() {
                 this.classList.toggle('expanded');
