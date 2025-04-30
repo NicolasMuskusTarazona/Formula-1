@@ -134,7 +134,7 @@ input {
 .circuito {
     border: 2px solid var(--color-plateado);
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.377);
     padding: 20px;
     transition: transform 0.3s ease-in-out;
 }
@@ -142,6 +142,34 @@ input {
 .circuito:hover {
     transform: translateY(-10px);
 }
+
+.lista-ganadores {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    border: 1px solid var(--color-plateado);
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.lista-ganadores li {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--color-plateado);
+    font-size: 1rem;
+    color: var(--color-negro);
+    font-weight: 500;
+}
+
+.lista-ganadores li:last-child {
+    border-bottom: none;
+}
+
+.lista-ganadores li::before {
+    content: '🏁 ';
+    margin-right: 5px;
+}
+
 
 .nombre {
     font-size: 2em;

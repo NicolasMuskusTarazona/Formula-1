@@ -30,7 +30,17 @@ class CircuitContainer extends HTMLElement {
             return;
         }
         data.forEach(circuito => {
-            const primerGanador = circuito.ganadores[0];
+            let ganadoresHTML = '';
+            if (circuito.ganadores && circuito.ganadores.length > 0) {
+                ganadoresHTML = `<ul class="lista-ganadores">` +
+                circuito.ganadores.slice(0, 3).map(g => {
+                    return `<li>Temporada: ${g.temporada}, Piloto: ${g.piloto}</li>`;
+                }).join('') +
+            `</ul>`;
+            
+            } else {
+                ganadoresHTML = '<li>No hay ganadores registrados</li>';
+            }
             section.innerHTML += `
                 <article class="circuito" style="margin-bottom: 2rem;">
                     <h2 class="nombre">${circuito.nombre}</h2>
@@ -42,9 +52,9 @@ class CircuitContainer extends HTMLElement {
                     <p class="pais">${circuito.pais}</p><hr>
                     <p class="info"><strong>Longitud:</strong> ${circuito.longitud_km} km</p><hr>
                     <p class="info"><strong>Vueltas:</strong> ${circuito.vueltas}</p><hr>
-                    <p class="descripcion"><strong>Descripción:</strong> ${circuito.descripcion}</p><hr>
+                    <p class="descripcion"><strong>Descripcion:</strong> ${circuito.descripcion}</p><hr>
                     <p class="info"><strong>Record:</strong> ${circuito.record_vuelta.tiempo} - ${circuito.record_vuelta.piloto} (${circuito.record_vuelta.año})</p>
-                    <p class="info"><strong>Ganadores:</strong> Temporada: ${primerGanador.temporada} - Piloto: ${primerGanador.piloto}</p>
+                    <p class="info"><strong>Ganadores:</strong>${ganadoresHTML}</p>
                 </article>
             `;
         });
