@@ -1,10 +1,10 @@
-// circuits.js
+// Import
 import '../components/circuit-container.js';
 import '../components/circuit-search.js'
-
+// Datos
 const circuitos = [
     {
-        nombre: "Circuito de Monaco",
+        nombre: "Monaco",
         pais: "Mónaco",
         longitud_km: 3.34,
         vueltas: 78,
@@ -32,7 +32,7 @@ const circuitos = [
         imagen: "https://upload.wikimedia.org/wikipedia/commons/c/ca/Circuit_Silverstone_2011.svg"
     },
     {
-        nombre: "Circuito de Spa-Francorchamps",
+        nombre: "SpaFrancorchamps",
         pais: "Bélgica",
         longitud_km: 7.00,
         vueltas: 44,
@@ -46,7 +46,7 @@ const circuitos = [
         imagen: "https://upload.wikimedia.org/wikipedia/commons/5/54/Spa-Francorchamps_of_Belgium.svg"
     },
     {
-        nombre: "Circuito de Monza",
+        nombre: "Monza",
         pais: "Italia",
         longitud_km: 5.79,
         vueltas: 53,
@@ -74,7 +74,7 @@ const circuitos = [
         imagen: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace_%28AKA_Interlagos%29_track_map.svg"
     },
     {
-        nombre: "Circuito de Yas Marina",
+        nombre: "Yas Marina",
         pais: "Emiratos Árabes Unidos",
         longitud_km: 5.28,
         vueltas: 58,
@@ -88,8 +88,8 @@ const circuitos = [
         imagen: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Yas_Marina_Circuit.png"
     },
     {
-        nombre: "Circuito de Suzuka",
-        pais: "Japón",
+        nombre: "Suzuka",
+        pais: "Japon",
         longitud_km: 5.81,
         vueltas: 53,
         descripcion: "Un circuito desafiante con un diseño en forma de ocho, famoso por sus curvas de alta velocidad como 130R y la 'S' de Senna.",

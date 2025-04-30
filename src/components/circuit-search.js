@@ -1,4 +1,4 @@
-// circuit-search.js
+// Input busqueda estilos
 class CircuitSearch extends HTMLElement {
     constructor() {
         super();

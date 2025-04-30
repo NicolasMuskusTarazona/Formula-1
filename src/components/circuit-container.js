@@ -3,6 +3,7 @@ class CircuitContainer extends HTMLElement {
         super();
         this.allData = [];
     }
+    //HTML
     connectedCallback() {
         this.innerHTML = `<section class="circuitos"></section>`;
     }
@@ -10,6 +11,7 @@ class CircuitContainer extends HTMLElement {
         this.allData = data;
         this._renderList(data);
     }
+    //Filtro Input
     filterByName(valor) {
         const filtro = valor.toLowerCase().trim();
         if (!filtro) {
@@ -22,41 +24,43 @@ class CircuitContainer extends HTMLElement {
         );
         this._renderList(filtrados);
     }
+    // No existe Circuito
     _renderList(data) {
         const section = this.querySelector('.circuitos');
         section.innerHTML = '';
         if (data.length === 0) {
-            section.innerHTML = `<p style="color: red;font-size:40px;">No se encontraron circuitos con ese nombre o país.</p>`;
+            section.innerHTML = `<p style="color: red; font-size: 40px;">No se encontraron circuitos con ese nombre o país.</p>`;
             return;
         }
+    //Ultimos Ganadores
         data.forEach(circuito => {
-            let ganadoresHTML = '';
-            if (circuito.ganadores && circuito.ganadores.length > 0) {
-                ganadoresHTML = `<ul class="lista-ganadores">` +
-                circuito.ganadores.slice(0, 3).map(g => {
-                    return `<li>Temporada: ${g.temporada}, Piloto: ${g.piloto}</li>`;
-                }).join('') +
-            `</ul>`;
-            
-            } else {
-                ganadoresHTML = '<li>No hay ganadores registrados</li>';
-            }
-            section.innerHTML += `
-                <article class="circuito" style="margin-bottom: 2rem;">
-                    <h2 class="nombre">${circuito.nombre}</h2>
-                    <img 
-                        src="${circuito.imagen}" 
-                        alt="Mapa de ${circuito.nombre}" 
-                        style="width: 100%; max-width: 400px; height: auto; display: block; margin: 10px 0;"
-                    >
-                    <p class="pais">${circuito.pais}</p><hr>
-                    <p class="info"><strong>Longitud:</strong> ${circuito.longitud_km} km</p><hr>
-                    <p class="info"><strong>Vueltas:</strong> ${circuito.vueltas}</p><hr>
-                    <p class="descripcion"><strong>Descripcion:</strong> ${circuito.descripcion}</p><hr>
-                    <p class="info"><strong>Record:</strong> ${circuito.record_vuelta.tiempo} - ${circuito.record_vuelta.piloto} (${circuito.record_vuelta.año})</p>
-                    <p class="info"><strong>Ganadores:</strong>${ganadoresHTML}</p>
-                </article>
+            const ganadoresHTML = circuito.ganadores && circuito.ganadores.length > 0 ? 
+                `<ul class="lista-ganadores">` +
+                circuito.ganadores.slice(0, 3).map(g => 
+                    `<li>Temporada: ${g.temporada}, Piloto: ${g.piloto}</li>`
+                ).join('') +
+                `</ul>` : '<p>No hay ganadores registrados</p>';
+    // Contenedor Circuitos
+            const circuitoElement = document.createElement('article');
+            circuitoElement.classList.add('circuito');
+            circuitoElement.innerHTML = `
+                <h2 class="nombre">${circuito.nombre}</h2>
+                <img 
+                    src="${circuito.imagen}" 
+                    alt="Mapa de ${circuito.nombre}" 
+                    class="imagen-circuito"
+                >
+                <p class="pais">${circuito.pais}</p><hr>
+                <p class="info"><strong>Longitud:</strong> ${circuito.longitud_km} km</p><hr>
+                <p class="info"><strong>Vueltas:</strong> ${circuito.vueltas}</p><hr>
+                <p class="descripcion"><strong>Descripcion:</strong> ${circuito.descripcion}</p><hr>
+                <p class="info"><strong>Record:</strong> ${circuito.record_vuelta.tiempo} - ${circuito.record_vuelta.piloto} (${circuito.record_vuelta.año})</p>
+                <p class="info"><strong>Ganadores:</strong>${ganadoresHTML}</p>
             `;
+            circuitoElement.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+            section.appendChild(circuitoElement);
         });
     }
 }
