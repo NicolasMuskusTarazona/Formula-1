@@ -49,7 +49,7 @@ const vehiculos = [
         desgaste_neumaticos: { seco: 1.1, lluvioso: 0.6, extremo: 1.9 }
       }
     },
-    imagen: "https://p.turbosquid.com/ts-thumb/D5/Oaj3t2/DB/z0/jpg/1720609521/600x600/fit_q87/47e7201035cdbe117dd00fd6ef9db358c529e9f9/z0.jpg"
+    imagen: "https://p.turbosquid.com/ts-thumb/My/iCUpeJ/fo/w15_0000/jpg/1715059275/600x600/fit_q87/3adf4842787e20b8fab6f8f2363158b70b2ac1af/w15_0000.jpg"
   },
   {
     equipo: "Ferrari",
@@ -263,16 +263,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const detallesID = `detalles-${v.modelo.replace(/\s+/g, '-')}`;
   
     card.innerHTML = `
-      <img src="${v.imagen}" alt="${v.modelo}">
-      <div class="card-content">
-        <h3>${v.modelo} - ${v.equipo}</h3>
-        <p><strong>Motor:</strong> ${v.motor}</p>
-        <p><strong>Velocidad Máx:</strong> ${v.velocidad_maxima_kmh} km/h</p>
-        <p><strong>0-100 km/h:</strong> ${v.aceleracion_0_100}s</p>
-        <button class="toggle-btn" data-id="${detallesID}">Ver Rendimiento</button>
-        <div class="details" id="${detallesID}" style="display: none;"></div>
-      </div>
-    `;
+    <img src="${v.imagen}" alt="${v.modelo}">
+    <div class="card-content">
+      <h3>${v.modelo} - ${v.equipo}</h3>
+      <p><strong>Motor:</strong> ${v.motor}</p>
+      <p><strong>Velocidad Máx:</strong> ${v.velocidad_maxima_kmh} km/h</p>
+      <p><strong>0-100 km/h:</strong> ${v.aceleracion_0_100}s</p>
+      <button class="toggle-btn" data-id="${detallesID}">Ver Rendimiento</button>
+      <div class="details" id="${detallesID}" style="display: none;"></div>
+      <button class="boton-comprar">Comparar</button>
+    </div>
+  `;
+  
     
     card.querySelector('.toggle-btn').addEventListener('click', (e) => {
       const detallesDiv = card.querySelector(`#${detallesID}`);
@@ -280,7 +282,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
       if (detallesDiv.style.display === "none" || detallesDiv.style.display === "") {
         if (detallesDiv.innerHTML.trim() === "") {
-          detallesDiv.innerHTML = Object.entries(v.rendimiento).map(([modo, datos]) => `
+          detallesDiv.innerHTML = Object.entries(v.rendimiento).map(([modo, datos]) =>
+             `
             <h4>${modo.replace("_", " ").toUpperCase()}</h4>
             <p>Velocidad promedio: ${datos.velocidad_promedio_kmh} km/h</p>
             <p>Combustible (Seco): ${datos.consumo_combustible.seco} L/km</p>

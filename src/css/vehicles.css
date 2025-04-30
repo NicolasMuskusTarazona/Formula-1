@@ -280,3 +280,21 @@ input {
 .buscar-btn:hover {
   background-color: darkred;
 }
+
+.boton-comprar {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 5px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 80px;
+  }
+  
+  .boton-comprar:hover {
+    background-color: #c62828;
+  }
+  
