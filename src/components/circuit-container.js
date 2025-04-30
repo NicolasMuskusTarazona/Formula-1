@@ -7,10 +7,12 @@ class CircuitContainer extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `<section class="circuitos"></section>`;
     }
-    renderData(data) {
+    renderData(data, climas) {
         this.allData = data;
+        this.climas = climas;
         this._renderList(data);
     }
+    
     //Filtro Input
     filterByName(valor) {
         const filtro = valor.toLowerCase().trim();
@@ -54,8 +56,9 @@ class CircuitContainer extends HTMLElement {
                 <p class="info"><strong>Longitud:</strong> ${circuito.longitud_km} km</p><hr>
                 <p class="info"><strong>Vueltas:</strong> ${circuito.vueltas}</p><hr>
                 <p class="descripcion"><strong>Descripcion:</strong> ${circuito.descripcion}</p><hr>
-                <p class="info"><strong>Record:</strong> ${circuito.record_vuelta.tiempo} - ${circuito.record_vuelta.piloto} (${circuito.record_vuelta.año})</p>
-                <p class="info"><strong>Ganadores:</strong>${ganadoresHTML}</p>
+                <p class="info"><strong>Record:</strong> ${circuito.record_vuelta.tiempo} - ${circuito.record_vuelta.piloto} (${circuito.record_vuelta.año})</p><hr>
+                <p class="info"><strong>Ganadores:</strong> ${ganadoresHTML}</p><br>
+                <p class="info"><strong>Clima Promedio:</strong> ${this.climas[circuito.nombre]}</p>
             `;
             circuitoElement.addEventListener('click', function() {
                 this.classList.toggle('expanded');

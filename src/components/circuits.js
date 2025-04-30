@@ -2,6 +2,16 @@
 import '../components/circuit-container.js';
 import '../components/circuit-search.js'
 // Datos
+const climaPorCircuito = {
+    Monaco: "Seco",
+    Silverstone: "Lluvioso",
+    SpaFrancorchamps: "Extremo",
+    Monza: "Seco",
+    Interlagos: "Lluvioso",
+    YasMarina: "Seco",
+    Suzuka: "Lluvioso"
+};
+
 const circuitos = [
     {
         nombre: "Monaco",
@@ -74,7 +84,7 @@ const circuitos = [
         imagen: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace_%28AKA_Interlagos%29_track_map.svg"
     },
     {
-        nombre: "Yas Marina",
+        nombre: "YasMarina",
         pais: "Emiratos Árabes Unidos",
         longitud_km: 5.28,
         vueltas: 58,
@@ -104,4 +114,4 @@ const circuitos = [
 ];
 
 const contenedor = document.getElementById('circuit-container');
-contenedor.renderData(circuitos);
+contenedor.renderData(circuitos,climaPorCircuito);
