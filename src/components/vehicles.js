@@ -237,21 +237,24 @@ const vehiculos = [
 
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('vehiculos');
+  const comparados = [];
+  const modal = document.getElementById("modal");
+  const modalContent = document.getElementById("mejorVehiculoDetalles");
+  const closeModal = document.querySelector(".close");
   
   if (!container) {
     console.error('Contenedor #vehiculos no encontrado');
     return;
   }
   
-  // Función para filtrar vehículos por nombre
   container.filterByName = (valor) => {
     const cards = container.querySelectorAll('.card');
     cards.forEach(card => {
       const modelo = card.querySelector('h3').textContent.toLowerCase();
       if (modelo.includes(valor.toLowerCase())) {
-        card.style.display = ''; // Mostrar tarjeta
+        card.style.display = ''; 
       } else {
-        card.style.display = 'none'; // Ocultar tarjeta
+        card.style.display = 'none'; 
       }
     });
   };
@@ -297,7 +300,36 @@ document.addEventListener('DOMContentLoaded', () => {
         boton.textContent = "Ver Rendimiento";
       }
     });
+
+    card.querySelector('.boton-comprar').addEventListener('click', () => {
+      if (!comparados.includes(v)) {
+        comparados.push(v);
+        alert(`${v.modelo} ha sido agregado a la comparación`);
+      } else {
+        alert(`${v.modelo} ya está en la lista de comparación`);
+      }
+
+      if (comparados.length > 1) {
+        const mejorVehiculo = comparados.reduce((mejor, actual) => {
+          const comparar = (mejor, actual) => {
+            if (actual.velocidad_maxima_kmh > mejor.velocidad_maxima_kmh) return actual;
+            if (actual.aceleracion_0_100 < mejor.aceleracion_0_100) return actual;
+            if (actual.rendimiento.conduccion_normal.consumo_combustible.seco < mejor.rendimiento.conduccion_normal.consumo_combustible.seco) return actual;
+            if (actual.rendimiento.conduccion_normal.desgaste_neumaticos.seco < mejor.rendimiento.conduccion_normal.desgaste_neumaticos.seco) return actual;
+            return mejor;
+          };
+  
+          return comparar(mejor, actual);
+        });
+  
+        alert(`El mejor vehículo es: ${mejorVehiculo.modelo} con las siguientes características:
+        - Velocidad máxima: ${mejorVehiculo.velocidad_maxima_kmh} km/h
+        - Aceleración 0-100 km/h: ${mejorVehiculo.aceleracion_0_100}s
+        - Consumo de combustible (Seco): ${mejorVehiculo.rendimiento.conduccion_normal.consumo_combustible.seco} L/km
+        - Desgaste de neumáticos (Seco): ${mejorVehiculo.rendimiento.conduccion_normal.desgaste_neumaticos.seco}`);
+      }
+    });
   
     container.appendChild(card);
   });
-});
+  });
