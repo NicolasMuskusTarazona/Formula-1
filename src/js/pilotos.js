@@ -243,37 +243,61 @@ const pilotos = [
 
 
 const contenedor = document.getElementById("Pilotos");
-
-pilotos.forEach(eq => {
-  const carta = document.createElement("div");
-  carta.className = "carta-equipo";
-  carta.innerHTML = `
-    <div class="carta-inner">
-      <div class="carta-front">
-        <img src="${eq.imagen}" alt="${eq.nombre}" />
-      </div>
-      <div class="carta-back">
-       <div class="piloto-nombre">
-        <h3>${eq.nombre}</h3>
-        <img src="${eq.logo}" alt="Logo equipo" class="logo-equipo">
-        </div>
-        <img src="${eq.imagen}" class="logo-equipo">
-        <p style="text-align: center;">${eq.equipo}</p>
-
-        <div class="estadisticas-circulares">
-          ${Object.entries(eq.estadisticas || {}).map(([clave, valor]) => `
-            <div class="circulo">
-              <svg>
-                <circle cx="30" cy="30" r="25"></circle>
-                <circle cx="30" cy="30" r="25" style="--valor:${valor}"></circle>
-              </svg>
-              <div class="dato">${valor}</div>
-              <small>${clave}</small>
+const buscador = document.getElementById("buscador");
+function renderizarPilotos(filtro = "") {
+    contenedor.innerHTML = "";
+  
+    const pilotosFiltrados = pilotos.filter(piloto => {
+      const nombrePiloto = piloto.nombre.toLowerCase();
+      const nombreEquipo = piloto.equipo.toLowerCase();
+      return (
+        nombrePiloto.includes(filtro) ||
+        nombreEquipo.includes(filtro)
+      );
+    });
+  
+    pilotosFiltrados.forEach(piloto => {
+      const carta = document.createElement("div");
+      carta.className = "carta-equipo";
+      carta.innerHTML = `
+        <div class="carta-inner">
+          <div class="carta-front">
+            <img src="${piloto.imagen}" alt="${piloto.nombre}" />
+          </div>
+          <div class="carta-back">
+            <div class="piloto-nombre">
+              <h3>${piloto.nombre}</h3>
+              <img src="${piloto.logo}" alt="Logo equipo" class="logo-equipo">
             </div>
-          `).join("")}
+            <img src="${piloto.imagen}" class="logo-equipo">
+            <p style="text-align: center;">${piloto.equipo}</p>
+  
+            <div class="estadisticas-circulares">
+              ${Object.entries(piloto.estadisticas || {}).map(([clave, valor]) => `
+                <div class="circulo">
+                  <svg>
+                    <circle cx="30" cy="30" r="25"></circle>
+                    <circle cx="30" cy="30" r="25" style="--valor:${valor}"></circle>
+                  </svg>
+                  <div class="dato">${valor}</div>
+                  <small>${clave}</small>
+                </div>
+              `).join("")}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  `;
-  contenedor.appendChild(carta);
-});
+      `;
+  
+      contenedor.appendChild(carta);
+    });
+  }
+  
+  // Inicializar
+  renderizarPilotos();
+  
+  // Evento del buscador
+  buscador.addEventListener("input", e => {
+    const filtro = e.target.value.toLowerCase();
+    renderizarPilotos(filtro);
+  });
+  
