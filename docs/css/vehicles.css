@@ -264,26 +264,26 @@ input {
 }
 
 .buscar-btn {
-  margin-top: 20px;
-  width: 120px;
-  height: 48px;
-  padding: 10px 20px;
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 20px;
-  font-family: 'Poppins-Bold', sans-serif;
+    margin-top: 20px;
+    width: 120px;
+    height: 48px;
+    padding: 10px 20px;
+    background-color: var(--color-rojo-oscuro);
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Poppins-Bold', sans-serif;
 }
 
 .buscar-btn:hover {
-  background-color: darkred;
+    background-color: var(--color-rojo-o);
 }
 
 .boton-comprar {
-    background-color: #e53935;
-    color: white;
+    background-color:var(--color-rojo);
+    color:var(--color-blanco);
     border: none;
     padding: 10px 20px;
     margin-top: 5px;
@@ -292,8 +292,8 @@ input {
     cursor: pointer;
     transition: background-color 0.3s;
     margin-left: 80px;
-  }
-  
-  .boton-comprar:hover {
-    background-color: #c62828;
-  }
+}
+
+.boton-comprar:hover {
+    background-color: var(--color-rojo);
+}
