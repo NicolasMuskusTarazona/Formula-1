@@ -99,7 +99,9 @@ header img {
     border-bottom: 2px solid var(--color-rojo-oscuro);
     gap: 1rem;
 }
-
+.menu img {
+    width: 10px;
+}
 .menu button {
     background: none;
     border: none;

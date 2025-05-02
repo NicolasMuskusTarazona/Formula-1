@@ -195,7 +195,6 @@ body {
   }
   
   
-
   
   .menu button {
     position: relative;
@@ -217,7 +216,8 @@ body {
   }
   
   .mini-page img {
-    width: 100%;
+    width: 150px;
+    height: 20px;
     border-radius: 6px;
     margin-top: 0.5rem;
   }
