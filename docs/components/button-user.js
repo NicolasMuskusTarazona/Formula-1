@@ -22,12 +22,12 @@ usuario.addEventListener('click', () => {
         const passwordGuardado = localStorage.getItem('contrasena')
         if (usuarioIngresado === usuarioGuardado && passwordIngresado === passwordGuardado) {
             login.innerHTML = `
-        <div style="display: flex; justify-content: center; align-items: center;">
-            <a href="../src/views/userweb.html" style="display: inline-block; padding: 10px 20px; background-color: green; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
-                Entrar
-            </a>
-        </div>
-        `
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <a href="userweb.html" style="display: inline-block; padding: 10px 20px; background-color: green; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                    Entrar
+                </a>
+            </div>
+        `        
         } else {
             alert('Usuario o contraseña incorrectos. Intenta de nuevo.');
         }
