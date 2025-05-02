@@ -1,4 +1,5 @@
 .pilotos-container {
+  background-color: black;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
@@ -36,7 +37,7 @@
 }
 
 .carta-front {
-  background-color: white;
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,7 +47,7 @@
 .carta-front img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .carta-back {
