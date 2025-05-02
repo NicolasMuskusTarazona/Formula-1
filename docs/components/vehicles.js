@@ -49,7 +49,7 @@ const vehiculos = [
         desgaste_neumaticos: { seco: 1.1, lluvioso: 0.6, extremo: 1.9 }
       }
     },
-    imagen: "https://p.twurbosquid.com/ts-thumb/My/iCUpeJ/fo/w15_0000/jpg/1715059275/600x600/fit_q87/3adf4842787e20b8fab6f8f2363158b70b2ac1af/w15_0000.jpg"
+    imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/FIA_F1_Austria_2018_Nr._44_Hamilton.jpg/1200px-FIA_F1_Austria_2018_Nr._44_Hamilton.jpg"
   },
   {
     equipo: "Ferrari",
