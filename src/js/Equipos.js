@@ -109,43 +109,63 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const contenedor = document.getElementById("equipos");
+  const buscador = document.getElementById("buscador");
 
-  equipos.forEach(eq => {
-    const carta = document.createElement("div");
-    carta.className = "carta-equipo";
-    carta.innerHTML = `
-      <div class="carta-inner">
-        <div class="carta-front">
-          <img src="${eq.imagen}" alt="${eq.nombre}" />
-        </div>
-        <div class="carta-back">
-          <h3 class="equipo-nombre"> 
-          ${eq.nombre}
-        <img src="${eq.imagen}" alt="Logo ${eq.nombre}" class="logo-equipo" />
-        
-        </h3>
-          <p><strong>País:</strong> ${eq.pais}</p>
-          <p><strong>Motor:</strong> ${eq.motor}</p>
-          
-          
-        <div class="pilotos-back">
-            ${eq.pilotos.map(id => {
-      const piloto = pilotos.find(p => p.id === id);
-      return `
+  function renderizarEquipos(filtro = "") {
+    contenedor.innerHTML = "";
+
+    const equiposFiltrados = equipos.filter(eq => {
+      const nombreEquipo = eq.nombre.toLowerCase();
+      const pilotosEquipo = eq.pilotos
+        .map(id => pilotos.find(p => p.id === id)?.nombre.toLowerCase())
+        .join(" ");
+
+      return nombreEquipo.includes(filtro) || pilotosEquipo.includes(filtro);
+    });
+
+    equiposFiltrados.forEach(eq => {
+      const carta = document.createElement("div");
+      carta.className = "carta-equipo";
+
+      const pilotosHTML = eq.pilotos.map(id => {
+        const piloto = pilotos.find(p => p.id === id);
+        return `
           <div class="piloto">
-          <span>${piloto.nombre}</span>
-           <img src="${piloto.foto}" alt="${piloto.nombre}" class="foto-piloto" />
+            <span>${piloto.nombre}</span>
+            <img src="${piloto.foto}" alt="${piloto.nombre}" class="foto-piloto" />
+          </div>
+        `;
+      }).join("");
 
-          </div>`
-          ;}).join("")}  </div>
-          <div class="flex items-baseline justify-center bg-plusPattern64 bg-[length:8px]">
-  <img alt="Racing Bulls" src="${eq.carro}" class="f1-c-image" />
-</div>
-      </div>
+      carta.innerHTML = `
+        <div class="carta-inner">
+          <div class="carta-front">
+            <img src="${eq.imagen}" alt="${eq.nombre}" />
+          </div>
+          <div class="carta-back">
+            <h3 class="equipo-nombre">${eq.nombre}
+              <img src="${eq.imagen}" alt="Logo ${eq.nombre}" class="logo-equipo" />
+            </h3>
+            <p><strong>País:</strong> ${eq.pais}</p>
+            <p><strong>Motor:</strong> ${eq.motor}</p>
+            <div class="pilotos-back">
+              ${pilotosHTML}
+            </div>
+            <div class="flex items-baseline justify-center bg-plusPattern64 bg-[length:8px]">
+              <img alt="${eq.nombre}" src="${eq.carro}" class="f1-c-image" />
+            </div>
+          </div>
         </div>
+      `;
 
-       
-    `;
-    contenedor.appendChild(carta);
+      contenedor.appendChild(carta);
+    });
+  }
+
+  renderizarEquipos();
+
+  buscador.addEventListener("input", e => {
+    const filtro = e.target.value.toLowerCase();
+    renderizarEquipos(filtro);
   });
 });
