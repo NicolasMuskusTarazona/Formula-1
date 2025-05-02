@@ -247,3 +247,128 @@ body {
   outline: none;
   transition: box-shadow 0.3s ease;
 }
+.f1-info {
+  background: linear-gradient(135deg, #ffffff, #f1f1f1);
+  padding: 4rem 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in;
+  max-width: 1000px;
+  margin: auto;
+  color: #333;
+}
+
+.f1-info h2, .f1-info h3 {
+  color: #e10600;
+  margin-bottom: 1rem;
+  position: relative;
+  animation: slideInLeft 0.7s ease-out;
+}
+
+.f1-info h2::after, .f1-info h3::after {
+  content: '';
+  width: 60px;
+  height: 3px;
+  background-color: #e10600;
+  display: block;
+  margin-top: 0.4rem;
+  animation: expandBar 1s ease-out;
+}
+
+.f1-info p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 1.8rem;
+  animation: fadeInUp 0.9s forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.f1-info ul {
+  list-style: none;
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+.f1-info li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  animation: fadeInUp 0.9s forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.f1-info li::before {
+  content: '➤';
+  position: absolute;
+  left: 0;
+  color: #e10600;
+}
+
+.img1 {
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  border-radius: 10px;
+  display: block;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  animation: fadeInUp 1s forwards;
+  opacity: 0;
+}
+
+.f1-video {
+  text-align: center;
+  margin: 3rem 0;
+  animation: fadeIn 1s ease-out;
+}
+
+.f1-video h2 {
+  font-size: 2rem;
+  color: #e10600;
+  margin-bottom: 1.5rem;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 56.25%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.video-container iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none;
+  top: 0;
+  left: 0;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  0% { transform: translateX(-30px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes expandBar {
+  0% { width: 0; }
+  100% { width: 60px; }
+}
