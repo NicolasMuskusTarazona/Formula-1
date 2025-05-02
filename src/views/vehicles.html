@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehículos</title>
+  <link rel="stylesheet" href="../css/vehicles.css">
+  <link rel="icon" href="../storage/img/login/fm1.png">
+  <script src="../components/vehicles.js" defer></script>
+  <script src="../components/vehiclesSearch.js" defer></script>
+</head>
+<body>
+  <header>
+    <img src="../storage/img/userweb/fia_logo.png" alt="logo">
+    <div class="header-container">
+      <div class="nav-links">
+        <h1><a href="https://www.f1authentics.com/">Authentics</a></h1>
+        <h1><a href="https://f1store.formula1.com/en/?_s=bm-fi-f1-prtsite-topnav-230720-jm">Store</a></h1>
+        <h1><a href="https://tickets.formula1.com/es">Tickets</a></h1>
+        <h1><a href="https://tickets.formula1.com/en/h-formula1-hospitality">Hospitality</a></h1>
+        <h1><a href="https://f1experiences.com/?utm_source=formula1.com&utm_medium=referral&utm_campaign=general">Experiences</a></h1>
+        |
+      </div>
+      <img src="../storage/img/userweb/f1-tv-logo.png" alt="tv">|
+      <button><img src="../storage/img/userweb/usuario.png" alt=""> Nicolas</button>
+      <button class="suscribete">Suscribete</button>
+    </div>
+  </header>
+
+  <section id="dashboard" class="dashboard">
+    <nav class="menu">
+      <button data-section="drivers"><a href="./userweb.html">Pilotos</a></button>
+      <button data-section="vehicles"><a href="./vehicles.html">Vehículos</a></button>
+      <button data-section="tracks"><a href="./circuits.html">Circuitos</a></button>
+      <button data-section="race"><a href="./simulation.html">Simulación</a></button>
+    </nav>
+  </section>
+  <circuit-search></circuit-search>
+  <main>
+    <section id="vehiculos" class="vehiculos-container"></section>
+  </main>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Vehículo Mejor Comparado</h2>
+      <p id="mejorVehiculoDetalles"></p>
+    </div>
+  </div>
+</body>
+</html>
