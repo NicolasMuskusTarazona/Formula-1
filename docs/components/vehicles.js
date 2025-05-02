@@ -49,7 +49,7 @@ const vehiculos = [
         desgaste_neumaticos: { seco: 1.1, lluvioso: 0.6, extremo: 1.9 }
       }
     },
-    imagen: "https://p.turbosquid.com/ts-thumb/My/iCUpeJ/fo/w15_0000/jpg/1715059275/600x600/fit_q87/3adf4842787e20b8fab6f8f2363158b70b2ac1af/w15_0000.jpg"
+    imagen: "https://p.twurbosquid.com/ts-thumb/My/iCUpeJ/fo/w15_0000/jpg/1715059275/600x600/fit_q87/3adf4842787e20b8fab6f8f2363158b70b2ac1af/w15_0000.jpg"
   },
   {
     equipo: "Ferrari",
