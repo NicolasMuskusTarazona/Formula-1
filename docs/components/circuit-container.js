@@ -2,18 +2,37 @@ class CircuitContainer extends HTMLElement {
     constructor() {
         super();
         this.allData = [];
+        this.climas = {};
     }
-    //HTML
+
     connectedCallback() {
+        // Establece la estructura HTML inicial
         this.innerHTML = `<section class="circuitos"></section>`;
+        
+        // Al cargar la página, obtén los datos desde localStorage
+        this.loadDataFromLocalStorage();
     }
+
+    loadDataFromLocalStorage() {
+        // Obtén los datos de localStorage
+        const circuitosGuardados = JSON.parse(localStorage.getItem('circuitos')) || [];
+        const climaGuardado = JSON.parse(localStorage.getItem('climaPorCircuito')) || {};
+        
+        // Verifica si los datos se están obteniendo correctamente
+        console.log('Circuitos guardados:', circuitosGuardados);
+        console.log('Clima guardado:', climaGuardado);
+        
+        // Llama a renderData con los datos obtenidos de localStorage
+        this.renderData(circuitosGuardados, climaGuardado);
+    }
+
     renderData(data, climas) {
         this.allData = data;
         this.climas = climas;
         this._renderList(data);
     }
-    
-    //Filtro Input
+
+    // Filtro por nombre o país
     filterByName(valor) {
         const filtro = valor.toLowerCase().trim();
         if (!filtro) {
@@ -26,7 +45,8 @@ class CircuitContainer extends HTMLElement {
         );
         this._renderList(filtrados);
     }
-    // No existe Circuito
+    
+    // Renderiza la lista de circuitos
     _renderList(data) {
         const section = this.querySelector('.circuitos');
         section.innerHTML = '';
@@ -34,15 +54,15 @@ class CircuitContainer extends HTMLElement {
             section.innerHTML = `<p style="color: red; font-size: 40px;">No se encontraron circuitos con ese nombre o país.</p>`;
             return;
         }
-    //Ultimos Ganadores
+
+        // Para cada circuito, crea un elemento HTML
         data.forEach(circuito => {
             const ganadoresHTML = circuito.ganadores && circuito.ganadores.length > 0 ? 
                 `<ul class="lista-ganadores">` +
                 circuito.ganadores.slice(0, 3).map(g => 
                     `<li>Temporada: ${g.temporada}, Piloto: ${g.piloto}</li>`
                 ).join('') +
-                `</ul>` : '<p>No hay ganadores registrados</p>';
-    // Contenedor Circuitos
+                `</ul>` : '<p style="color: black; font-weight: bold;">No hay ganadores registrados</p>';
             const circuitoElement = document.createElement('article');
             circuitoElement.classList.add('circuito');
             circuitoElement.innerHTML = `
@@ -65,9 +85,10 @@ class CircuitContainer extends HTMLElement {
             circuitoElement.addEventListener('click', function() {
                 this.classList.toggle('expanded');
             });
-            section.appendChild(circuitoElement);
+            section.appendChild(circuitoElement); 
         });
     }
 }
 
-customElements.define('circuit-container', CircuitContainer);
+// Define el custom element
+customElements.define('circuit-container', CircuitContainer)

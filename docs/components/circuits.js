@@ -1,8 +1,9 @@
 // Import
 import '../components/circuit-container.js';
 import '../components/circuit-search.js'
+import '../components/circuitAdmin.js'
 // Datos
-const climaPorCircuito = {
+export const climaPorCircuito = {
     Monaco: "Seco",
     Silverstone: "Lluvioso",
     SpaFrancorchamps: "Extremo",
@@ -12,7 +13,7 @@ const climaPorCircuito = {
     Suzuka: "Lluvioso"
 };
 
-const circuitos = [
+export const circuitos = [
     {
         nombre: "Monaco",
         pais: "Mónaco",
@@ -127,5 +128,12 @@ const circuitos = [
     }
 ];
 
-const contenedor = document.getElementById('circuit-container');
-contenedor.renderData(circuitos,climaPorCircuito);
+
+// Guardar los datos en localStorage
+localStorage.setItem('circuitos', JSON.stringify(circuitos))
+localStorage.setItem('climaPorCircuito', JSON.stringify(climaPorCircuito))
+
+// Obtener y pasar los datos al componente
+const contenedor = document.getElementById('circuit-container')
+contenedor.renderData(circuitos, climaPorCircuito)
+
