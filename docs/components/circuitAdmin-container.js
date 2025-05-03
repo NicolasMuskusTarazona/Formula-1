@@ -4,6 +4,7 @@ class CircuitContainerAdmin extends HTMLElement {
         this.allData = [];
         this.climas = {};
     }
+
     connectedCallback() {
         // Establece la estructura HTML inicial
         this.innerHTML = `<section class="circuitos"></section>`;
@@ -11,23 +12,22 @@ class CircuitContainerAdmin extends HTMLElement {
         // Al cargar la página, obtén los datos desde localStorage
         this.loadDataFromLocalStorage();
     }
+
     loadDataFromLocalStorage() {
         // Obtén los datos de localStorage
         const circuitosGuardados = JSON.parse(localStorage.getItem('circuitosAdmin')) || [];
         const climaGuardado = JSON.parse(localStorage.getItem('climaPorCircuito')) || {};
         
-        // Verifica si los datos se están obteniendo correctamente
-        console.log('Circuitos guardados:', circuitosGuardados);
-        console.log('Clima guardado:', climaGuardado);
-        
         // Llama a renderData con los datos obtenidos de localStorage
         this.renderData(circuitosGuardados, climaGuardado);
     }
+
     renderData(data, climas) {
         this.allData = data;
         this.climas = climas;
         this._renderList(data);
     }
+
     // Filtro por nombre o país
     filterByName(valor) {
         const filtro = valor.toLowerCase().trim();
@@ -41,22 +41,26 @@ class CircuitContainerAdmin extends HTMLElement {
         );
         this._renderList(filtrados);
     }
+
     // Renderiza la lista de circuitos
     _renderList(data) {
         const section = this.querySelector('.circuitos');
-        section.innerHTML = '';
+        section.innerHTML = ''; // Limpia la lista actual
+
         if (data.length === 0) {
             section.innerHTML = `<p style="color: red; font-size: 40px;">No se encontraron circuitos con ese nombre o país.</p>`;
             return;
         }
+
         // Para cada circuito, crea un elemento HTML
-        data.forEach(circuito => {
+        data.forEach((circuito, index) => {
             const ganadoresHTML = circuito.ganadores && circuito.ganadores.length > 0 ? 
                 `<ul class="lista-ganadores">` +
                 circuito.ganadores.slice(0, 3).map(g => 
                     `<li>Temporada: ${g.temporada}, Piloto: ${g.piloto}</li>`
                 ).join('') +
                 `</ul>` : '<p style="color: black; font-weight: bold;">No hay ganadores registrados</p>';
+            
             const circuitoElement = document.createElement('article');
             circuitoElement.classList.add('circuito');
             circuitoElement.innerHTML = `
@@ -75,11 +79,75 @@ class CircuitContainerAdmin extends HTMLElement {
                 <p class="info"><strong>Clima Promedio:</strong> ${this.climas[circuito.nombre]}</p><hr>
                 <p class="info"><strong>Desgaste Neumáticos:</strong> ${circuito.desgaste_neumaticos}</p>
                 <p class="info"><strong>Consumo Combustible:</strong> ${circuito.consumo_combustible}</p>
+                <button class="deleteBtn">Eliminar</button>
+                <button class="editBtn">Editar</button>
             `;
-            circuitoElement.addEventListener('click', function() {
-                this.classList.toggle('expanded');
-            });
-            section.appendChild(circuitoElement); 
+            
+            // Event listeners para el botón de eliminar y editar
+            circuitoElement.querySelector('.deleteBtn').addEventListener('click', () => this.deleteCircuito(index));
+            circuitoElement.querySelector('.editBtn').addEventListener('click', () => this.editCircuito(index, circuito));
+
+            section.appendChild(circuitoElement);
+        });
+    }
+
+    // Función para actualizar los datos de localStorage después de la edición o eliminación
+    updateLocalStorage() {
+        localStorage.setItem('circuitosAdmin', JSON.stringify(this.allData));
+        localStorage.setItem('climaPorCircuito', JSON.stringify(this.climas));
+    }
+
+    // Función para eliminar un circuito
+    deleteCircuito(index) {
+        this.allData.splice(index, 1);  // Elimina el circuito en el índice proporcionado
+        this.updateLocalStorage();  // Actualiza localStorage
+        this._renderList(this.allData);  // Vuelve a renderizar la lista de circuitos
+    }
+
+    // Función para editar un circuito
+    editCircuito(index, updatedCircuit) {
+        const formContainer = document.getElementById('formContainer');
+        formContainer.innerHTML = `
+            <form id="editCircuitForm">
+                <input type="text" id="nombre" value="${updatedCircuit.nombre}" required><br>
+                <input type="text" id="pais" value="${updatedCircuit.pais}" required><br>
+                <input type="number" id="longitud" value="${updatedCircuit.longitud_km}" step="0.01"><br>
+                <input type="number" id="vueltas" value="${updatedCircuit.vueltas}"><br>
+                <input type="text" id="descripcion" value="${updatedCircuit.descripcion}"><br>
+                <input type="text" id="record" value="${updatedCircuit.record_vuelta.tiempo}"><br>
+                <input type="text" id="pilotoRecord" value="${updatedCircuit.record_vuelta.piloto}"><br>
+                <input type="number" id="añoRecord" value="${updatedCircuit.record_vuelta.año}"><br>
+                <input type="url" id="imagen" value="${updatedCircuit.imagen}"><br>
+                <input type="text" id="desgaste" value="${updatedCircuit.desgaste_neumaticos}"><br>
+                <input type="text" id="consumo" value="${updatedCircuit.consumo_combustible}"><br>
+                <input type="text" id="clima" value="${this.climas[updatedCircuit.nombre]}" required><br><br>
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        `;
+        
+        const form = document.getElementById('editCircuitForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            updatedCircuit.nombre = document.getElementById('nombre').value;
+            updatedCircuit.pais = document.getElementById('pais').value;
+            updatedCircuit.longitud_km = parseFloat(document.getElementById('longitud').value);
+            updatedCircuit.vueltas = parseInt(document.getElementById('vueltas').value);
+            updatedCircuit.descripcion = document.getElementById('descripcion').value;
+            updatedCircuit.record_vuelta = {
+                tiempo: document.getElementById('record').value,
+                piloto: document.getElementById('pilotoRecord').value,
+                año: parseInt(document.getElementById('añoRecord').value)
+            };
+            updatedCircuit.imagen = document.getElementById('imagen').value;
+            updatedCircuit.desgaste_neumaticos = document.getElementById('desgaste').value;
+            updatedCircuit.consumo_combustible = document.getElementById('consumo').value;
+            
+            const clima = document.getElementById('clima').value;
+            this.climas[updatedCircuit.nombre] = clima;
+            
+            // Actualiza el circuito y el clima en localStorage
+            this.editCircuito(index, updatedCircuit);
+            formContainer.innerHTML = ''; // Limpiar formulario después de editar
         });
     }
 }

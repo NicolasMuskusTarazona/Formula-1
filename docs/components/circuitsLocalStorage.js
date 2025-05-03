@@ -1,8 +1,22 @@
-// Import
+// Importación de los módulos
 import '../components/circuit-container.js';
-import '../components/circuit-search.js'
-import '../components/circuitAdmin.js'
-// Datos
+import '../components/circuit-search.js';
+import '../components/circuitAdmin.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Obtener el contenedor después de que el DOM esté completamente cargado
+    localStorage.setItem('circuitos', JSON.stringify(circuitos));
+    localStorage.setItem('climaPorCircuito', JSON.stringify(climaPorCircuito));
+    const contenedorAdmin = document.getElementById('circuitAdmin-container');
+
+    if (contenedorAdmin) {
+        // Suponiendo que tienes una función para renderizar datos
+        contenedorAdmin.renderData(circuitos, climaPorCircuito);
+    } else {
+        console.error('El contenedor con id "circuitAdmin-container" no se encuentra en el DOM');
+    }
+});
+
 export const climaPorCircuito = {
     Monaco: "Seco",
     Silverstone: "Lluvioso",
@@ -13,7 +27,7 @@ export const climaPorCircuito = {
     Suzuka: "Lluvioso"
 };
 
-export const circuitosAdmin = [
+export const circuitos = [
     {
         nombre: "Monaco",
         pais: "Mónaco",
@@ -127,13 +141,3 @@ export const circuitosAdmin = [
         consumo_combustible: "Alto"
     }
 ];
-
-
-// Guardar los datos en localStorage
-localStorage.setItem('circuitosAdmin', JSON.stringify(circuitosAdmin))
-localStorage.setItem('climaPorCircuito', JSON.stringify(climaPorCircuito))
-
-// Obtener y pasar los datos al componente
-const contenedor = document.getElementById('circuit-containerAdmin')
-contenedor.renderData(circuitosAdmin, climaPorCircuito)
-

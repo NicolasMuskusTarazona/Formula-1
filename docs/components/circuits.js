@@ -2,7 +2,7 @@
 import '../components/circuit-container.js';
 import '../components/circuit-search.js'
 // Datos
-export const climaPorCircuito = {
+export const climaPorCircuitoView = {
     Monaco: "Seco",
     Silverstone: "Lluvioso",
     SpaFrancorchamps: "Extremo",
@@ -129,5 +129,5 @@ export const circuitosView = [
 
 // Obtener y pasar los datos al componente
 const contenedor = document.getElementById('circuit-container')
-contenedor.renderData(circuitosView, climaPorCircuito)
+contenedor.renderData(circuitosView, climaPorCircuitoView)
 
