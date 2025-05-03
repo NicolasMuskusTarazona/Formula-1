@@ -7,21 +7,25 @@ const lista = document.getElementById('circuitosLista');
 btnAgregar.addEventListener('click', () => {
     if (formContainer.innerHTML === '') {
         formContainer.innerHTML = `
-            <form id="circuitForm">
-                <input type="text" id="nombre" placeholder="Nombre" required><br>
-                <input type="text" id="pais" placeholder="País" required><br>
-                <input type="number" id="longitud" placeholder="Longitud (km)" step="0.01"><br>
-                <input type="number" id="vueltas" placeholder="Vueltas"><br>
-                <input type="text" id="descripcion" placeholder="Descripción"><br>
-                <input type="text" id="record" placeholder="Record vuelta (tiempo)"><br>
-                <input type="text" id="pilotoRecord" placeholder="Piloto"><br>
-                <input type="number" id="añoRecord" placeholder="Año"><br>
-                <input type="url" id="imagen" placeholder="URL de la imagen"><br>
-                <input type="text" id="desgaste" placeholder="Desgaste neumáticos"><br>
-                <input type="text" id="consumo" placeholder="Consumo combustible"><br>
-                <input type="text" id="clima" placeholder="Clima (Seco, Lluvia, etc.)"><br><br>
-                <button type="submit" class="guardarCircuito">Guardar</button>
-            </form>
+        <form id="circuitForm" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; width: 100%;">
+            <input type="text" id="nombre" placeholder="Nombre" required>
+            <input type="text" id="pais" placeholder="País" required>
+            <input type="number" id="longitud" placeholder="Longitud (km)" step="0.01">
+            <input type="number" id="vueltas" placeholder="Vueltas">
+            <input type="text" id="descripcion" placeholder="Descripción">
+            <input type="text" id="record" placeholder="Record vuelta (tiempo)">
+            <input type="text" id="pilotoRecord" placeholder="Piloto">
+            <input type="number" id="añoRecord" placeholder="Año">
+            <input type="url" id="imagen" placeholder="URL de la imagen">
+            <input type="text" id="ganadores" placeholder="Ganadores">
+            <input type="text" id="desgaste" placeholder="Desgaste neumáticos">
+            <input type="text" id="consumo" placeholder="Consumo combustible">
+            <input type="text" id="clima" placeholder="Clima (Seco, Lluvia, etc.)">
+            <div style="grid-column: span 3; text-align: center;">
+        <button type="submit" class="guardarCircuito">Guardar</button>
+    </div>
+</form>
+
         `;
     }
 });
@@ -84,6 +88,7 @@ function renderizarCircuitos() {
         item.style.display = 'flex';
         item.style.justifyContent = 'space-between';
         item.style.alignItems = 'center';
+        item.style.marginLeft = '30px'
         item.innerHTML = `
             <div>
                 <strong>${circuito.nombre}</strong> - ${circuito.pais}
