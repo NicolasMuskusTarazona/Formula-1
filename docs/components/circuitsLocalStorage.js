@@ -13,7 +13,7 @@ export const climaPorCircuito = {
     Suzuka: "Lluvioso"
 };
 
-export const circuitos = [
+export const circuitosAdmin = [
     {
         nombre: "Monaco",
         pais: "Mónaco",
@@ -130,10 +130,10 @@ export const circuitos = [
 
 
 // Guardar los datos en localStorage
-localStorage.setItem('circuitos', JSON.stringify(circuitos))
+localStorage.setItem('circuitosAdmin', JSON.stringify(circuitosAdmin))
 localStorage.setItem('climaPorCircuito', JSON.stringify(climaPorCircuito))
 
 // Obtener y pasar los datos al componente
-const contenedor = document.getElementById('circuit-container')
-contenedor.renderData(circuitos, climaPorCircuito)
+const contenedor = document.getElementById('circuit-containerAdmin')
+contenedor.renderData(circuitosAdmin, climaPorCircuito)
 

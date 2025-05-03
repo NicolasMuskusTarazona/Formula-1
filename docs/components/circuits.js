@@ -1,7 +1,6 @@
 // Import
 import '../components/circuit-container.js';
 import '../components/circuit-search.js'
-import '../components/circuitAdmin.js'
 // Datos
 export const climaPorCircuito = {
     Monaco: "Seco",
@@ -13,7 +12,7 @@ export const climaPorCircuito = {
     Suzuka: "Lluvioso"
 };
 
-export const circuitos = [
+export const circuitosView = [
     {
         nombre: "Monaco",
         pais: "Mónaco",
@@ -130,5 +129,5 @@ export const circuitos = [
 
 // Obtener y pasar los datos al componente
 const contenedor = document.getElementById('circuit-container')
-contenedor.renderData(circuitos, climaPorCircuito)
+contenedor.renderData(circuitosView, climaPorCircuito)
 

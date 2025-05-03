@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formula 1 | Circuitos</title>
     <link rel="stylesheet" href="css/circuits.css">
-    <script src="components/circuit-container.js" type="module" defer></script>
+    <script src="components/circuitAdmin-container.js" type="module" defer></script>
     <script src="components/circuit-search.js" type="module" defer></script>
     <script src="components/circuitAdmin.js" type="module" defer></script>
+    <script type="module" src="components/circuitsLocalStorage.js"></script>
     <link rel="icon" type="image/png" href="storage/img/userweb/F1-logo-1.png">
-    <link rel="stylesheet" href="css/userweb.css">
 </head>
 <body>
     <header>
@@ -48,7 +48,7 @@
         </nav>
     </section><br>
     <circuit-search></circuit-search>
-    <circuit-container id="circuit-container"></circuit-container>
+    <circuit-container-admin id="circuit-containerAdmin"></circuit-container-admin>
     <section class="ManipulateCircuits">
         <h2 class="AdminHeader">Administrador de circuitos</h2>
     </section>
