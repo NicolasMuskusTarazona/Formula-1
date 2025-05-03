@@ -128,6 +128,11 @@ export const circuitos = [
     }
 ];
 
+
+// Guardar los datos en localStorage
+localStorage.setItem('circuitos', JSON.stringify(circuitos))
+localStorage.setItem('climaPorCircuito', JSON.stringify(climaPorCircuito))
+
 // Obtener y pasar los datos al componente
 const contenedor = document.getElementById('circuit-container')
 contenedor.renderData(circuitos, climaPorCircuito)
