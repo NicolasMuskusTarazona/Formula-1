@@ -1,18 +1,8 @@
-// Import
-import '../components/circuit-container.js';
-import '../components/circuit-search.js'
-// Datos
-export const climaPorCircuitoView = {
-    Monaco: "Seco",
-    Silverstone: "Lluvioso",
-    SpaFrancorchamps: "Extremo",
-    Monza: "Seco",
-    Interlagos: "Lluvioso",
-    YasMarina: "Seco",
-    Suzuka: "Lluvioso"
-};
+import './circuitAdmin-container.js';
+import './circuit-search.js';
+import './circuitAdmin.js';
 
-export const circuitosView = [
+const circuitosAdmin = [
     {
         nombre: "Monaco",
         pais: "Mónaco",
@@ -127,7 +117,17 @@ export const circuitosView = [
     }
 ];
 
-// Obtener y pasar los datos al componente
-const contenedor = document.getElementById('circuit-container')
-contenedor.renderData(circuitosView, climaPorCircuitoView)
+// Guarda los datos de los circuitos en el localStorage
+localStorage.setItem('circuitosAdmin', JSON.stringify(circuitosAdmin));
 
+export const climaPorCircuitoAdmin = {
+    Monaco: "Seco",
+    Silverstone: "Lluvioso",
+    SpaFrancorchamps: "Extremo",
+    Monza: "Seco",
+    Interlagos: "Lluvioso",
+    YasMarina: "Seco",
+    Suzuka: "Lluvioso"
+};
+
+export default circuitosAdmin;

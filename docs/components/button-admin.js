@@ -23,7 +23,7 @@ admin.addEventListener('click', () => {
         if (adminIngresado === adminGuardado && passwordIngresado === passwordGuardado) {
             login.innerHTML = `
             <div style="display: flex; justify-content: center; align-items: center;">
-                <a href="adminweb.html" style="display: inline-block; padding: 10px 20px; background-color: green; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                <a href="../docs/adminweb.html" style="display: inline-block; padding: 10px 20px; background-color: green; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
                     Entrar
                 </a>
             </div>

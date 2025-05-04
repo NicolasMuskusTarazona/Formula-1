@@ -3,7 +3,7 @@ class CircuitContainer extends HTMLElement {
         super();
         this.allData = [];
     }
-    //HTML
+    // HTML
     connectedCallback() {
         this.innerHTML = `<section class="circuitos"></section>`;
     }
@@ -12,8 +12,7 @@ class CircuitContainer extends HTMLElement {
         this.climas = climas;
         this._renderList(data);
     }
-    
-    //Filtro Input
+    // Filtro Input
     filterByName(valor) {
         const filtro = valor.toLowerCase().trim();
         if (!filtro) {
@@ -26,7 +25,8 @@ class CircuitContainer extends HTMLElement {
         );
         this._renderList(filtrados);
     }
-    // No existe Circuito
+
+    // Render Circuitos
     _renderList(data) {
         const section = this.querySelector('.circuitos');
         section.innerHTML = '';
@@ -34,7 +34,7 @@ class CircuitContainer extends HTMLElement {
             section.innerHTML = `<p style="color: red; font-size: 40px;">No se encontraron circuitos con ese nombre o país.</p>`;
             return;
         }
-    //Ultimos Ganadores
+
         data.forEach(circuito => {
             const ganadoresHTML = circuito.ganadores && circuito.ganadores.length > 0 ? 
                 `<ul class="lista-ganadores">` +
@@ -42,7 +42,7 @@ class CircuitContainer extends HTMLElement {
                     `<li>Temporada: ${g.temporada}, Piloto: ${g.piloto}</li>`
                 ).join('') +
                 `</ul>` : '<p>No hay ganadores registrados</p>';
-    // Contenedor Circuitos
+
             const circuitoElement = document.createElement('article');
             circuitoElement.classList.add('circuito');
             circuitoElement.innerHTML = `
