@@ -84,6 +84,7 @@ input {
     z-index: -1;
     animation: 1s infinite;
 }
+
 /* Responsividad para pantallas pequeñas */
 @media (max-width: 600px) {
     h1 {
