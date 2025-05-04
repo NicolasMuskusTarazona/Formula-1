@@ -183,7 +183,7 @@ a {
 .card {
     background-color: #1e1e1e;
     color: white;
-    width: 300px;
+    width: 600px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
@@ -191,7 +191,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 750px; 
+    height: 950px; 
 }
 
 .card:hover {
@@ -221,7 +221,7 @@ a {
 }
 
 .card-content .details {
-    height: 350px; 
+    height: 450px; 
     overflow: hidden;
     transition: height 0.3s ease;
 }
@@ -241,6 +241,7 @@ a {
     margin-top: 30px;
     width: 100%;
     font-weight: bold;
+    
 }
 
 .details {
@@ -291,7 +292,7 @@ input {
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-left: 80px;
+    margin-left: 45px;
 }
 
 .boton-comprar:hover {
