@@ -3,18 +3,15 @@ class CircuitContainer extends HTMLElement {
         super();
         this.allData = [];
     }
-
     // HTML
     connectedCallback() {
         this.innerHTML = `<section class="circuitos"></section>`;
     }
-
     renderData(data, climas) {
         this.allData = data;
         this.climas = climas;
         this._renderList(data);
     }
-
     // Filtro Input
     filterByName(valor) {
         const filtro = valor.toLowerCase().trim();

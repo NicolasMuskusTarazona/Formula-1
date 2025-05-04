@@ -1,3 +1,8 @@
+// circuitAdmin-container.js
+
+import circuitosAdmin from './circuitsLocalStorage.js'; // Importa correctamente los datos
+
+// El resto del código sigue igual...
 class CircuitContainerAdmin extends HTMLElement {
     constructor() {
         super();
@@ -16,7 +21,7 @@ class CircuitContainerAdmin extends HTMLElement {
     loadDataFromLocalStorage() {
         // Obtén los datos de localStorage
         const circuitosGuardados = JSON.parse(localStorage.getItem('circuitosAdmin')) || [];
-        const climaGuardado = JSON.parse(localStorage.getItem('climaPorCircuito')) || {};
+        const climaGuardado = JSON.parse(localStorage.getItem('climaPorCircuitoAdmin')) || {};
         
         // Llama a renderData con los datos obtenidos de localStorage
         this.renderData(circuitosGuardados, climaGuardado);
@@ -93,7 +98,7 @@ class CircuitContainerAdmin extends HTMLElement {
 
     // Función para actualizar los datos de localStorage después de la edición o eliminación
     updateLocalStorage() {
-        localStorage.setItem('circuitosAdmin', JSON.stringify(this.allData));
+        localStorage.setItem('circuitos', JSON.stringify(this.allData));
         localStorage.setItem('climaPorCircuito', JSON.stringify(this.climas));
     }
 
@@ -124,34 +129,29 @@ class CircuitContainerAdmin extends HTMLElement {
                 <button type="submit">Guardar Cambios</button>
             </form>
         `;
-        
-        const form = document.getElementById('editCircuitForm');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            updatedCircuit.nombre = document.getElementById('nombre').value;
-            updatedCircuit.pais = document.getElementById('pais').value;
-            updatedCircuit.longitud_km = parseFloat(document.getElementById('longitud').value);
-            updatedCircuit.vueltas = parseInt(document.getElementById('vueltas').value);
-            updatedCircuit.descripcion = document.getElementById('descripcion').value;
-            updatedCircuit.record_vuelta = {
-                tiempo: document.getElementById('record').value,
-                piloto: document.getElementById('pilotoRecord').value,
-                año: parseInt(document.getElementById('añoRecord').value)
-            };
-            updatedCircuit.imagen = document.getElementById('imagen').value;
-            updatedCircuit.desgaste_neumaticos = document.getElementById('desgaste').value;
-            updatedCircuit.consumo_combustible = document.getElementById('consumo').value;
-            
-            const clima = document.getElementById('clima').value;
-            this.climas[updatedCircuit.nombre] = clima;
-            
-            // Actualiza el circuito y el clima en localStorage
-            this.editCircuito(index, updatedCircuit);
-            formContainer.innerHTML = ''; // Limpiar formulario después de editar
-        });
+        const editForm = document.getElementById('editCircuitForm');
+        editForm.addEventListener('submit', (event) => this.saveEdit(index, event, updatedCircuit));
+    }
+
+    saveEdit(index, event, updatedCircuit) {
+        event.preventDefault();
+        updatedCircuit.nombre = document.getElementById('nombre').value;
+        updatedCircuit.pais = document.getElementById('pais').value;
+        updatedCircuit.longitud_km = document.getElementById('longitud').value;
+        updatedCircuit.vueltas = document.getElementById('vueltas').value;
+        updatedCircuit.descripcion = document.getElementById('descripcion').value;
+        updatedCircuit.record_vuelta.tiempo = document.getElementById('record').value;
+        updatedCircuit.record_vuelta.piloto = document.getElementById('pilotoRecord').value;
+        updatedCircuit.record_vuelta.año = document.getElementById('añoRecord').value;
+        updatedCircuit.imagen = document.getElementById('imagen').value;
+        updatedCircuit.desgaste_neumaticos = document.getElementById('desgaste').value;
+        updatedCircuit.consumo_combustible = document.getElementById('consumo').value;
+        this.climas[updatedCircuit.nombre] = document.getElementById('clima').value;
+
+        this.allData[index] = updatedCircuit;
+        this.updateLocalStorage();
+        this._renderList(this.allData);
     }
 }
 
-// Define el custom element
 customElements.define('circuit-container-admin', CircuitContainerAdmin);
-

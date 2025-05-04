@@ -1,33 +1,8 @@
-// Importación de los módulos
-import '../components/circuit-container.js';
-import '../components/circuit-search.js';
-import '../components/circuitAdmin.js';
+import './circuitAdmin-container.js';
+import './circuit-search.js';
+import './circuitAdmin.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Obtener el contenedor después de que el DOM esté completamente cargado
-    localStorage.setItem('circuitos', JSON.stringify(circuitos));
-    localStorage.setItem('climaPorCircuito', JSON.stringify(climaPorCircuito));
-    const contenedorAdmin = document.getElementById('circuitAdmin-container');
-
-    if (contenedorAdmin) {
-        // Suponiendo que tienes una función para renderizar datos
-        contenedorAdmin.renderData(circuitos, climaPorCircuito);
-    } else {
-        console.error('El contenedor con id "circuitAdmin-container" no se encuentra en el DOM');
-    }
-});
-
-export const climaPorCircuito = {
-    Monaco: "Seco",
-    Silverstone: "Lluvioso",
-    SpaFrancorchamps: "Extremo",
-    Monza: "Seco",
-    Interlagos: "Lluvioso",
-    YasMarina: "Seco",
-    Suzuka: "Lluvioso"
-};
-
-export const circuitos = [
+const circuitosAdmin = [
     {
         nombre: "Monaco",
         pais: "Mónaco",
@@ -141,3 +116,18 @@ export const circuitos = [
         consumo_combustible: "Alto"
     }
 ];
+
+// Guarda los datos de los circuitos en el localStorage
+localStorage.setItem('circuitosAdmin', JSON.stringify(circuitosAdmin));
+
+export const climaPorCircuitoAdmin = {
+    Monaco: "Seco",
+    Silverstone: "Lluvioso",
+    SpaFrancorchamps: "Extremo",
+    Monza: "Seco",
+    Interlagos: "Lluvioso",
+    YasMarina: "Seco",
+    Suzuka: "Lluvioso"
+};
+
+export default circuitosAdmin;
