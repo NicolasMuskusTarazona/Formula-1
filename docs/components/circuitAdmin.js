@@ -88,9 +88,9 @@ function renderizarFormulario(circuito = null, index = null) {
             <input type="text" id="desgaste" placeholder="Desgaste neumáticos" value="${circuito?.desgaste_neumaticos || ''}">
             <input type="text" id="consumo" placeholder="Consumo combustible" value="${circuito?.consumo_combustible || ''}">
             <input type="text" id="clima" placeholder="Clima" value="${climas[circuito?.nombre] || ''}">
-            <div style="grid-column: span 3; text-align: center;">
-                <button type="submit">${isEdit ? 'Guardar cambios' : 'Guardar'}</button>
-            </div>
+            <div class="button-container">
+                <button type="submit" class="save-button">${isEdit ? 'Guardar cambios' : 'Guardar'}</button>
+            </div>        
         </form>
     `;
 }
