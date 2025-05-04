@@ -25,15 +25,16 @@
         <button><img src="storage/img/userweb/usuario.png" alt=""> Adrian</button>
         <button class="suscribete">Suscribete</button>
     </div>
-</header>
-<section id="dashboard" class="dashboard">
+  </header>
+  
+  <section id="dashboard" class="dashboard">
     <nav class="menu">
         <img src="storage/img/userweb/logo-blanco.webp" />
         <button data-tooltip="drivers">
             <a href="Equipos.html">Equipos</a>
         </button>
         <button data-tooltip="drivers">
-            <a href="pilitos.html">Pilotos</a>
+            <a href="pilotos.html">Pilotos</a>
         </button>
         <button data-tooltip="vehicles">
             <a href="vehicles.html">Vehículos</a>
@@ -45,11 +46,32 @@
             <a href="simulation.html">Simulación</a>
         </button>
     </nav>
-</section>
+  </section>
+
   <circuit-search></circuit-search>
+
   <main>
+    <div class="form-container">
+      <form id="vehiculo-form">
+        <input type="text" id="imageUrl" placeholder="URL de la imagen" />
+        <input type="text" id="imageName" placeholder="Nombre del vehículo" />
+        <input type="text" id="equipo" placeholder="Equipo" />
+        <input type="text" id="modelo" placeholder="Modelo" />
+        <input type="text" id="motor" placeholder="Motor" />
+        <input type="number" id="velocidadMaxima" placeholder="Velocidad Máxima (km/h)" />
+        <input type="number" id="aceleracion" placeholder="Aceleración 0-100 (s)" />
+        <input type="text" id="pilotos" placeholder="Pilotos (IDs separados por comas)" />
+        <input type="text" id="rendimientoNormal" placeholder="Rendimiento Normal (velocidad, consumo, desgaste)" />
+        <input type="text" id="rendimientoAgresivo" placeholder="Rendimiento Agresivo (velocidad, consumo, desgaste)" />
+        <input type="text" id="ahorroCombustible" placeholder="Ahorro Combustible (velocidad, consumo, desgaste)" />
+        <button type="button" id="addImageBtn">Agregar Vehículo</button>
+      </form>
+    </div>
+    
+    <section id="gallery" class="lista-vehiculos"></section>
     <section id="vehiculos" class="vehiculos-container"></section>
   </main>
+
   <div id="modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>

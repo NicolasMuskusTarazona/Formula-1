@@ -278,7 +278,7 @@ input {
 }
 
 .buscar-btn:hover {
-    background-color: var(--color-rojo-o);
+    background-color: red
 }
 
 .boton-comprar {
@@ -296,4 +296,62 @@ input {
 
 .boton-comprar:hover {
     background-color: var(--color-rojo);
+}
+
+.lista-vehiculos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.card {
+    background-color: #1a1a1a;
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    width: 250px;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.card h4 {
+    margin: 10px 0 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.card .delete-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: red;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#addImageBtn {
+    background-color: #ff1e00; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave */
+    margin-left: 65px;
+}
+
+#addImageBtn:hover {
+    background-color: #e60000; /* Color de fondo al pasar el mouse */
 }

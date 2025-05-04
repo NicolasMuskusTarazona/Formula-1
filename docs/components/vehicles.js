@@ -333,3 +333,94 @@ document.addEventListener('DOMContentLoaded', () => {
     container.appendChild(card);
   });
   });
+
+const addImageBtn = document.getElementById("addImageBtn");
+const gallery = document.getElementById("gallery");
+
+addImageBtn.addEventListener("click", () => {
+  const url = document.getElementById("imageUrl").value;
+  const name = document.getElementById("imageName").value;
+  const equipo = document.getElementById("equipo").value;
+  const modelo = document.getElementById("modelo").value;
+  const motor = document.getElementById("motor").value;
+  const velocidadMaxima = document.getElementById("velocidadMaxima").value;
+  const aceleracion = document.getElementById("aceleracion").value;
+  const pilotos = document.getElementById("pilotos").value.split(',').map(p => p.trim());
+  const rendimientoNormal = document.getElementById("rendimientoNormal").value;
+  const rendimientoAgresivo = document.getElementById("rendimientoAgresivo").value;
+  const ahorroCombustible = document.getElementById("ahorroCombustible").value;
+
+  if (!url || !name || !equipo || !modelo || !motor || !velocidadMaxima || !aceleracion || !pilotos.length || !rendimientoNormal || !rendimientoAgresivo || !ahorroCombustible) {
+    alert("Por favor completa todos los campos.");
+    return;
+  }
+
+  // Crear un nuevo objeto de vehículo
+  const nuevoVehiculo = {
+    equipo: equipo,
+    modelo: modelo,
+    motor: motor,
+    velocidad_maxima_kmh: parseInt(velocidadMaxima),
+    aceleracion_0_100: parseFloat(aceleracion),
+    pilotos: pilotos,
+    rendimiento: {
+      conduccion_normal: {
+        velocidad_promedio_kmh: parseInt(rendimientoNormal.split(',')[0]),
+        consumo_combustible: { seco: parseFloat(rendimientoNormal.split(',')[1]), lluvioso: parseFloat(rendimientoNormal.split(',')[2]), extremo: parseFloat(rendimientoNormal.split(',')[3]) },
+        desgaste_neumaticos: { seco: parseFloat(rendimientoNormal.split(',')[4]), lluvioso: parseFloat(rendimientoNormal.split(',')[5]), extremo: parseFloat(rendimientoNormal.split(',')[6]) }
+      },
+      conduccion_agresiva: {
+        velocidad_promedio_kmh: parseInt(rendimientoAgresivo.split(',')[0]),
+        consumo_combustible: { seco: parseFloat(rendimientoAgresivo.split(',')[1]), lluvioso: parseFloat(rendimientoAgresivo.split(',')[2]), extremo: parseFloat(rendimientoAgresivo.split(',')[3]) },
+        desgaste_neumaticos: { seco: parseFloat(rendimientoAgresivo.split(',')[4]), lluvioso: parseFloat(rendimientoAgresivo.split(',')[5]), extremo: parseFloat(rendimientoAgresivo.split(',')[6]) }
+      },
+      ahorro_combustible: {
+        velocidad_promedio_kmh: parseInt(ahorroCombustible.split(',')[0]),
+        consumo_combustible: { seco: parseFloat(ahorroCombustible.split(',')[1]), lluvioso: parseFloat(ahorroCombustible.split(',')[2]), extremo: parseFloat(ahorroCombustible.split(',')[3]) },
+        desgaste_neumaticos: { seco: parseFloat(ahorroCombustible.split(',')[4]), lluvioso: parseFloat(ahorroCombustible.split(',')[5]), extremo: parseFloat(ahorroCombustible.split(',')[6]) }
+      }
+    },
+    imagen: url
+  };
+
+  // Agregar el nuevo vehículo al array de vehículos
+  vehiculos.push(nuevoVehiculo);
+
+  // Crear la carta del nuevo vehículo
+  const cardHTML = `
+    <div class="card">
+      <button class="delete-btn">X</button>
+      <img src="${url}" alt="${name}" />
+      <h4>${name}</h4>
+      <p><strong>Equipo:</strong> ${equipo}</p>
+      <p><strong>Modelo:</strong> ${modelo}</p>
+      <p><strong>Motor:</strong> ${motor}</p>
+      <p><strong>Velocidad Máxima:</strong> ${velocidadMaxima} km/h</p>
+      <p><strong>Aceleración 0-100:</strong> ${aceleracion} s</p>
+      <p><strong>Pilotos:</strong> ${pilotos.join(', ')}</p>
+    </div>
+  `;
+
+  // Insertar la nueva carta en la galería
+  gallery.insertAdjacentHTML("beforeend", cardHTML);
+
+  // Limpiar los campos del formulario
+  document.getElementById("vehiculo-form").reset();
+});
+
+// Manejo de eventos para eliminar vehículos de la galería
+gallery.addEventListener("click", (e) => {
+  const target = e.target;
+
+  if (target.classList.contains("delete-btn")) {
+    const card = target.closest(".card");
+    card.remove();
+  }
+
+  if (target.tagName === "IMG") {
+    const newUrl = prompt("Ingresa la nueva URL de la imagen:");
+    if (newUrl) {
+      target.src = newUrl;
+    }
+  }
+});
