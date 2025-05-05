@@ -1,0 +1,22 @@
+export const pilotosAdmin = [
+    { id: 1, nombre: "Max Verstappen", equipo: "Red Bull Racing", rol: "Líder", foto: "https://soymotor.com/sites/default/files/2025-03/mverstappen_2025.png" },
+    { id: 2, nombre: "Sergio Pérez", equipo: "Red Bull Racing", rol: "Escudero", foto: "https://soymotor.com/sites/default/files/2024-02/sergio-perez-2024.png" },
+    { id: 3, nombre: "Lewis Hamilton", equipo: "Mercedes-AMG Petronas", rol: "Líder", foto: "https://soymotor.com/sites/default/files/2025-03/lhamilton_2025.png" },
+    { id: 4, nombre: "George Russell", equipo: "Mercedes-AMG Petronas", rol: "Escudero", foto: "https://a.espncdn.com/combiner/i?img=/i/headshots/rpm/players/full/5503.png&w=350&h=254" },
+    { id: 5, nombre: "Charles Leclerc", equipo: "Ferrari", rol: "Líder", foto: "https://www.thesportsdb.com/images/media/player/cutout/o22gqr1740660501.png" },
+    { id: 6, nombre: "Carlos Sainz", equipo: "Ferrari", rol: "Escudero", foto: "https://a.espncdn.com/combiner/i?img=/i/headshots/rpm/players/full/4686.png" },
+    { id: 7, nombre: "Lando Norris", equipo: "McLaren", rol: "Líder", foto: "https://a.espncdn.com/combiner/i?img=/i/headshots/rpm/players/full/5579.png&w=350&h=254" },
+    { id: 8, nombre: "Oscar Piastri", equipo: "McLaren", rol: "Escudero", foto: "https://soymotor.com/sites/default/files/2025-03/opiastri_2025.png" },
+    { id: 9, nombre: "Fernando Alonso", equipo: "Aston Martin", rol: "Líder", foto: "https://soymotor.com/sites/default/files/2025-03/falonso_2025.png" },
+    { id: 10, nombre: "Lance Stroll", equipo: "Aston Martin", rol: "Escudero", foto: "https://cdn.racingnews365.com/Riders/Stroll/_570x570_crop_center-center_none/f1_2024_ls_ast_lg.png?v=1708704434" },
+    { id: 11, nombre: "Esteban Ocon", equipo: "Alpine", rol: "Líder", foto: "https://soymotor.com/sites/default/files/2025-03/eocon_2025.png" },
+    { id: 12, nombre: "Pierre Gasly", equipo: "Alpine", rol: "Escudero", foto: "https://soymotor.com/sites/default/files/2025-03/pgasly_2025.png" },
+    { id: 13, nombre: "Valtteri Bottas", equipo: "Alfa Romeo", rol: "Líder", foto: "https://soymotor.com/sites/default/files/2024-02/valtteri-bottas-2024.png" },
+    { id: 14, nombre: "Zhou Guanyu", equipo: "Alfa Romeo", rol: "Escudero", foto: "https://soymotor.com/sites/default/files/2024-02/guanyu-zhou-2024.png" },
+    { id: 15, nombre: "Kevin Magnussen", equipo: "Haas", rol: "Líder", foto: "https://soymotor.com/sites/default/files/2024-02/kevin-magnussen-2024.png" },
+    { id: 16, nombre: "Nico Hülkenberg", equipo: "Haas", rol: "Escudero", foto: "https://soymotor.com/sites/default/files/2025-03/nhulkenberg_2025.png" },
+    { id: 17, nombre: "Yuki Tsunoda", equipo: "AlphaTauri", rol: "Líder", foto: "https://soymotor.com/sites/default/files/2025-03/yuki-tsunoda-red-bull-2025.png" },
+    { id: 18, nombre: "Daniel Ricciardo", equipo: "AlphaTauri", rol: "Escudero", foto: "https://soymotor.com/sites/default/files/2024-02/daniel-ricciardo-2024.png" },
+    { id: 19, nombre: "Alexander Albon", equipo: "Williams", rol: "Líder", foto: "https://soymotor.com/sites/default/files/2025-03/aalbon_2025.png" },
+    { id: 20, nombre: "Logan Sargeant", equipo: "Williams", rol: "Escudero", foto: "https://soymotor.com/sites/default/files/2024-02/logan-sargeant-2024.png" }
+];

@@ -7,3 +7,7 @@ export const STORAGE_KEYS = {
 export const STORAGE_KEYS_VEHICULOS = {
     VEHICULOSADMIN: 'vehiculosAdmin',
 };
+
+export const STORAGE_KEYS_PILOTOS = {
+    PILOTOSADMIN: 'pilotosAdmin',
+};

@@ -270,3 +270,27 @@ form a {
   margin-top: 6px;
   font-size: 0.95rem;
 }
+
+#agregarPilotoBtn {
+  background: linear-gradient(135deg, #d20c05, #e50404);
+  color: white;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  margin: 20px auto;
+  display: block;
+}
+
+#agregarPilotoBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+#agregarPilotoBtn:active {
+  transform: scale(0.98);
+}
