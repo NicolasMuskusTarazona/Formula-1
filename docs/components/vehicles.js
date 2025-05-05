@@ -234,19 +234,17 @@ const vehiculos = [
     imagen: "https://p.turbosquid.com/ts-thumb/Ya/otN6eu/LE/turbosquid_preview/jpg/1707394178/600x600/fit_q87/850f5b5bdc3126c0881473cde13e23636dc5e957/turbosquid_preview.jpg"
   }
 ];
-
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('vehiculos');
   const comparados = [];
   const modal = document.getElementById("modal");
   const modalContent = document.getElementById("mejorVehiculoDetalles");
   const closeModal = document.querySelector(".close");
-  
+
   if (!container) {
     console.error('Contenedor #vehiculos no encontrado');
     return;
   }
-  
   container.filterByName = (valor) => {
     const cards = container.querySelectorAll('.card');
     cards.forEach(card => {
@@ -258,7 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   };
-
   vehiculos.forEach(v => {
     const card = document.createElement('div');
     card.className = 'card';
@@ -266,19 +263,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const detallesID = `detalles-${v.modelo.replace(/\s+/g, '-')}`;
   
     card.innerHTML = `
-    <img src="${v.imagen}" alt="${v.modelo}">
-    <div class="card-content">
-      <h3>${v.modelo} - ${v.equipo}</h3>
-      <p><strong>Motor:</strong> ${v.motor}</p>
-      <p><strong>Velocidad Máx:</strong> ${v.velocidad_maxima_kmh} km/h</p>
-      <p><strong>0-100 km/h:</strong> ${v.aceleracion_0_100}s</p>
-      <button class="toggle-btn" data-id="${detallesID}">Ver Rendimiento</button>
-      <div class="details" id="${detallesID}" style="display: none;"></div>
-      <button class="boton-comprar">Comparar</button>
-    </div>
-  `;
+      <img src="${v.imagen}" alt="${v.modelo}">
+      <div class="card-content">
+        <h3>${v.modelo} - ${v.equipo}</h3>
+        <p><strong>Motor:</strong> ${v.motor}</p>
+        <p><strong>Velocidad Máx:</strong> ${v.velocidad_maxima_kmh} km/h</p>
+        <p><strong>0-100 km/h:</strong> ${v.aceleracion_0_100}s</p>
+        <button class="toggle-btn" data-id="${detallesID}">Ver Rendimiento</button>
+        <div class="details" id="${detallesID}" style="display: none;"></div>
+        <button class="boton-comprar">Comparar</button>
+      </div>
+    `;
   
-    
     card.querySelector('.toggle-btn').addEventListener('click', (e) => {
       const detallesDiv = card.querySelector(`#${detallesID}`);
       const boton = e.target;
@@ -286,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (detallesDiv.style.display === "none" || detallesDiv.style.display === "") {
         if (detallesDiv.innerHTML.trim() === "") {
           detallesDiv.innerHTML = Object.entries(v.rendimiento).map(([modo, datos]) =>
-             `
+            `
             <h4>${modo.replace("_", " ").toUpperCase()}</h4>
             <p>Velocidad promedio: ${datos.velocidad_promedio_kmh} km/h</p>
             <p>Combustible (Seco): ${datos.consumo_combustible.seco} L/km</p>
@@ -300,7 +296,6 @@ document.addEventListener('DOMContentLoaded', () => {
         boton.textContent = "Ver Rendimiento";
       }
     });
-
     card.querySelector('.boton-comprar').addEventListener('click', () => {
       if (!comparados.includes(v)) {
         comparados.push(v);
@@ -308,119 +303,15 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         alert(`${v.modelo} ya está en la lista de comparación`);
       }
-
       if (comparados.length > 1) {
         const mejorVehiculo = comparados.reduce((mejor, actual) => {
           const comparar = (mejor, actual) => {
-            if (actual.velocidad_maxima_kmh > mejor.velocidad_maxima_kmh) return actual;
-            if (actual.aceleracion_0_100 < mejor.aceleracion_0_100) return actual;
-            if (actual.rendimiento.conduccion_normal.consumo_combustible.seco < mejor.rendimiento.conduccion_normal.consumo_combustible.seco) return actual;
-            if (actual.rendimiento.conduccion_normal.desgaste_neumaticos.seco < mejor.rendimiento.conduccion_normal.desgaste_neumaticos.seco) return actual;
             return mejor;
           };
-  
-          return comparar(mejor, actual);
+          return comparar(mejorVehiculo, v);
         });
-  
-        alert(`El mejor vehículo es: ${mejorVehiculo.modelo} con las siguientes características:
-        - Velocidad máxima: ${mejorVehiculo.velocidad_maxima_kmh} km/h
-        - Aceleración 0-100 km/h: ${mejorVehiculo.aceleracion_0_100}s
-        - Consumo de combustible (Seco): ${mejorVehiculo.rendimiento.conduccion_normal.consumo_combustible.seco} L/km
-        - Desgaste de neumáticos (Seco): ${mejorVehiculo.rendimiento.conduccion_normal.desgaste_neumaticos.seco}`);
       }
     });
-  
     container.appendChild(card);
   });
-  });
-
-const addImageBtn = document.getElementById("addImageBtn");
-const gallery = document.getElementById("gallery");
-
-addImageBtn.addEventListener("click", () => {
-  const url = document.getElementById("imageUrl").value;
-  const name = document.getElementById("imageName").value;
-  const equipo = document.getElementById("equipo").value;
-  const modelo = document.getElementById("modelo").value;
-  const motor = document.getElementById("motor").value;
-  const velocidadMaxima = document.getElementById("velocidadMaxima").value;
-  const aceleracion = document.getElementById("aceleracion").value;
-  const pilotos = document.getElementById("pilotos").value.split(',').map(p => p.trim());
-  const rendimientoNormal = document.getElementById("rendimientoNormal").value;
-  const rendimientoAgresivo = document.getElementById("rendimientoAgresivo").value;
-  const ahorroCombustible = document.getElementById("ahorroCombustible").value;
-
-  if (!url || !name || !equipo || !modelo || !motor || !velocidadMaxima || !aceleracion || !pilotos.length || !rendimientoNormal || !rendimientoAgresivo || !ahorroCombustible) {
-    alert("Por favor completa todos los campos.");
-    return;
-  }
-
-  // Crear un nuevo objeto de vehículo
-  const nuevoVehiculo = {
-    equipo: equipo,
-    modelo: modelo,
-    motor: motor,
-    velocidad_maxima_kmh: parseInt(velocidadMaxima),
-    aceleracion_0_100: parseFloat(aceleracion),
-    pilotos: pilotos,
-    rendimiento: {
-      conduccion_normal: {
-        velocidad_promedio_kmh: parseInt(rendimientoNormal.split(',')[0]),
-        consumo_combustible: { seco: parseFloat(rendimientoNormal.split(',')[1]), lluvioso: parseFloat(rendimientoNormal.split(',')[2]), extremo: parseFloat(rendimientoNormal.split(',')[3]) },
-        desgaste_neumaticos: { seco: parseFloat(rendimientoNormal.split(',')[4]), lluvioso: parseFloat(rendimientoNormal.split(',')[5]), extremo: parseFloat(rendimientoNormal.split(',')[6]) }
-      },
-      conduccion_agresiva: {
-        velocidad_promedio_kmh: parseInt(rendimientoAgresivo.split(',')[0]),
-        consumo_combustible: { seco: parseFloat(rendimientoAgresivo.split(',')[1]), lluvioso: parseFloat(rendimientoAgresivo.split(',')[2]), extremo: parseFloat(rendimientoAgresivo.split(',')[3]) },
-        desgaste_neumaticos: { seco: parseFloat(rendimientoAgresivo.split(',')[4]), lluvioso: parseFloat(rendimientoAgresivo.split(',')[5]), extremo: parseFloat(rendimientoAgresivo.split(',')[6]) }
-      },
-      ahorro_combustible: {
-        velocidad_promedio_kmh: parseInt(ahorroCombustible.split(',')[0]),
-        consumo_combustible: { seco: parseFloat(ahorroCombustible.split(',')[1]), lluvioso: parseFloat(ahorroCombustible.split(',')[2]), extremo: parseFloat(ahorroCombustible.split(',')[3]) },
-        desgaste_neumaticos: { seco: parseFloat(ahorroCombustible.split(',')[4]), lluvioso: parseFloat(ahorroCombustible.split(',')[5]), extremo: parseFloat(ahorroCombustible.split(',')[6]) }
-      }
-    },
-    imagen: url
-  };
-
-  // Agregar el nuevo vehículo al array de vehículos
-  vehiculos.push(nuevoVehiculo);
-
-  // Crear la carta del nuevo vehículo
-  const cardHTML = `
-    <div class="card">
-      <button class="delete-btn">X</button>
-      <img src="${url}" alt="${name}" />
-      <h4>${name}</h4>
-      <p><strong>Equipo:</strong> ${equipo}</p>
-      <p><strong>Modelo:</strong> ${modelo}</p>
-      <p><strong>Motor:</strong> ${motor}</p>
-      <p><strong>Velocidad Máxima:</strong> ${velocidadMaxima} km/h</p>
-      <p><strong>Aceleración 0-100:</strong> ${aceleracion} s</p>
-      <p><strong>Pilotos:</strong> ${pilotos.join(', ')}</p>
-    </div>
-  `;
-
-  // Insertar la nueva carta en la galería
-  gallery.insertAdjacentHTML("beforeend", cardHTML);
-
-  // Limpiar los campos del formulario
-  document.getElementById("vehiculo-form").reset();
-});
-
-// Manejo de eventos para eliminar vehículos de la galería
-gallery.addEventListener("click", (e) => {
-  const target = e.target;
-
-  if (target.classList.contains("delete-btn")) {
-    const card = target.closest(".card");
-    card.remove();
-  }
-
-  if (target.tagName === "IMG") {
-    const newUrl = prompt("Ingresa la nueva URL de la imagen:");
-    if (newUrl) {
-      target.src = newUrl;
-    }
-  }
 });

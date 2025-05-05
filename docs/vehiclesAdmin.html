@@ -1,83 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vehículos</title>
-  <link rel="stylesheet" href="css/vehicles-admin.css">
-  <link rel="icon" href="storage/img/login/fm1.png">
-  <script src="components/vehicles.js" defer></script>
-  <script src="components/vehiclesSearch.js" defer></script>
-  <link rel="stylesheet" href="css/userweb.css">
+  <link rel="stylesheet" href="css/vehicles-admin.css" />
+  <link rel="icon" href="storage/img/login/fm1.png" />
+  <script type="module" src="components/vehiclesAdmin.js" defer></script>
+  <script type="module" src="components/vehiclesLocalStorage.js"></script>
+  <script type="module" src="components/vehiclesStorageManager.js"></script>
+  <script type="module" src="components/vehiclesSearch.js" defer></script>
+  <script type="module" src="components/storageKeys.js" defer></script>
+  <link rel="stylesheet" href="css/userweb.css" />
 </head>
 <body>
   <header>
-    <img src="storage/img/userweb/fia_logo.png" alt="logo">
+    <img src="storage/img/userweb/fia_logo.png" alt="logo" />
     <div class="header-container">
-        <div class="nav-links">
-            <h1><a href="https://www.f1authentics.com/">Authentics</a></h1>
-            <h1><a href="https://f1store.formula1.com/en/?_s=bm-fi-f1-prtsite-topnav-230720-jm">Store</a></h1>
-            <h1><a href="https://tickets.formula1.com/es">Tickets</a></h1>
-            <h1><a href="https://tickets.formula1.com/en/h-formula1-hospitality">Hospitality</a></h1>
-            <h1><a href="https://f1experiences.com/?utm_source=formula1.com&utm_medium=referral&utm_campaign=general">Experiences</a></h1>
-        </div>
-        <img src="storage/img/userweb/f1-tv-logo.png" alt="tv">
-        <button><img src="storage/img/userweb/usuario.png" alt=""> Nicolas</button>
-        <button class="suscribete">Suscribete</button>
+      <div class="nav-links">
+        <h1><a href="https://www.f1authentics.com/">Authentics</a></h1>
+        <h1><a href="https://f1store.formula1.com/en/?_s=bm-fi-f1-prtsite-topnav-230720-jm">Store</a></h1>
+        <h1><a href="https://tickets.formula1.com/es">Tickets</a></h1>
+        <h1><a href="https://tickets.formula1.com/en/h-formula1-hospitality">Hospitality</a></h1>
+        <h1><a href="https://f1experiences.com/?utm_source=formula1.com&utm_medium=referral&utm_campaign=general">Experiences</a></h1>
+      </div>
+      <img src="storage/img/userweb/f1-tv-logo.png" alt="tv" />
+      <button><img src="storage/img/userweb/usuario.png" alt="" /> Nicolas</button>
+      <button class="suscribete">Suscribete</button>
     </div>
   </header>
-  
   <section id="dashboard" class="dashboard">
     <nav class="menu">
-        <img src="storage/img/userweb/logo-blanco.webp" />
-        <button data-tooltip="drivers">
-            <a href="EquiposAdmin.html">Equipos</a>
-        </button>
-        <button data-tooltip="drivers">
-            <a href="pilotosAdmin.html">Pilotos</a>
-        </button>
-        <button data-tooltip="vehicles">
-            <a href="vehiclesAdmin.html">Vehículos</a>
-        </button>
-        <button data-tooltip="tracks">
-            <a href="circuitsAdmin.html">Circuitos</a>
-        </button>
-        <button data-tooltip="race">
-            <a href="simulationAdmin.html">Simulación</a>
-        </button>
+      <img src="storage/img/userweb/logo-blanco.webp" />
+      <button data-tooltip="drivers"><a href="EquiposAdmin.html">Equipos</a></button>
+      <button data-tooltip="drivers"><a href="pilotosAdmin.html">Pilotos</a></button>
+      <button data-tooltip="vehicles"><a href="vehiclesAdmin.html">Vehículos</a></button>
+      <button data-tooltip="tracks"><a href="circuitsAdmin.html">Circuitos</a></button>
+      <button data-tooltip="race"><a href="simulationAdmin.html">Simulación</a></button>
     </nav>
   </section>
-
-  <circuit-search></circuit-search>
-
-  <main>
-    <div class="form-container">
-      <form id="vehiculo-form">
-        <input type="text" id="imageUrl" placeholder="URL de la imagen" />
-        <input type="text" id="imageName" placeholder="Nombre del vehículo" />
-        <input type="text" id="equipo" placeholder="Equipo" />
-        <input type="text" id="modelo" placeholder="Modelo" />
-        <input type="text" id="motor" placeholder="Motor" />
-        <input type="number" id="velocidadMaxima" placeholder="Velocidad Máxima (km/h)" />
-        <input type="number" id="aceleracion" placeholder="Aceleración 0-100 (s)" />
-        <input type="text" id="pilotos" placeholder="Pilotos (IDs separados por comas)" />
-        <input type="text" id="rendimientoNormal" placeholder="Rendimiento Normal (velocidad, consumo, desgaste)" />
-        <input type="text" id="rendimientoAgresivo" placeholder="Rendimiento Agresivo (velocidad, consumo, desgaste)" />
-        <input type="text" id="ahorroCombustible" placeholder="Ahorro Combustible (velocidad, consumo, desgaste)" />
-        <button type="button" id="addImageBtn">Agregar Vehículo</button>
-      </form>
-    </div>
-    
-    <section id="gallery" class="lista-vehiculos"></section>
-    <section id="vehiculos" class="vehiculos-container"></section>
-  </main>
-
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Vehículo Mejor Comparado</h2>
-      <p id="mejorVehiculoDetalles"></p>
-    </div>
-  </div>
+  <input type="text" id="busquedaVehiculo" placeholder="Buscar vehículo por nombre..." />
+  <button id="agregarVehiculoBtn">Agregar Vehículo</button>
+  <div id="formContainer"></div>
+  <div id="vehiculosLista"></div>
 </body>
 </html>
