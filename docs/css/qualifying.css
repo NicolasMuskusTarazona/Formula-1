@@ -1,8 +1,9 @@
 .simulation-container {
     padding: 2rem;
-    margin-left: 220px; /* ancho del menú lateral */
+    margin-left: 220px; 
     font-family: Arial, sans-serif;
     color: black;
+    transition: margin-left 0.3s ease;
 }
 
 .sim-header h1 {
@@ -40,4 +41,78 @@ button#startSimulation {
     padding: 0.8rem;
     border: 1px solid #ccc;
     text-align: center;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .simulation-container {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .sim-header h1 {
+        font-size: 1.5rem; 
+    }
+
+    button#startSimulation {
+        width: 100%; 
+        padding: 12px 0; 
+    }
+
+    .weather-box {
+        font-size: 1rem; 
+    }
+
+    .sim-results th, .sim-results td {
+        padding: 0.5rem;
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+    .simulation-container {
+        margin-left: 0; 
+        padding: 1.5rem;
+    }
+
+    .sim-header h1 {
+        font-size: 1.8rem; 
+    }
+
+    button#startSimulation {
+        padding: 10px 20px;
+    }
+
+    .weather-box {
+        font-size: 1.1rem;
+    }
+
+    .sim-results th, .sim-results td {
+        padding: 0.7rem;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .simulation-container {
+        margin-left: 220px;
+        padding: 2rem;
+    }
+
+    .sim-header h1 {
+        font-size: 2rem; 
+    }
+
+    button#startSimulation {
+        padding: 10px 20px;
+    }
+
+    .weather-box {
+        font-size: 1.2rem;
+    }
+
+    .sim-results th, .sim-results td {
+        padding: 0.8rem;
+    }
 }
