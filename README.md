@@ -1,6 +1,6 @@
 # 🏎️ Formula 1 - Landing Page
 
-**Formula 1** es una landing page estática con temática de la Fórmula 1, desarrollada con **HTML y CSS**, sin una sola línea de JavaScript. Fue creada como proyecto académico dentro del programa de formación en tecnología de **Campuslands** (Bucaramanga, Colombia).
+**Formula 1** es una landing page estática con temática de la Fórmula 1, desarrollada con **HTML , CSS y JS**. Fue creada como proyecto académico dentro del programa de formación en tecnología de **Campuslands** (Bucaramanga, Colombia).
 
 ---
 
